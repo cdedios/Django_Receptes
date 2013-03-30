@@ -18,7 +18,7 @@ def userpage(request, username):
     user = User.objects.get(username=username)
   except:
     raise Http404('User not found.')
-  ingredients = user.sobre_set.all()
+  ingredients = user.recepta_set.all()
   template = get_template('userpage.html')
   variables = Context({
     'username': username,
