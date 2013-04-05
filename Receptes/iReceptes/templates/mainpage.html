@@ -4,6 +4,14 @@
   </head>
   <body>
     <h1>{{ pagetitle }}</h1>
-      <p>{{ contentbody }}</p>
+
+    {% if user.username %}
+    <p>Benvingut {{ user.username }}!
+    Aquí podrà gestionar les seves receptes!</p>
+    {% else %}
+    <p>Benvingut no ningú:
+    Obligatori fer <a href="/login/">sign in</a>
+    per gestionar receptes.</p>
+    {% endif %}
   </body>
 </html>
