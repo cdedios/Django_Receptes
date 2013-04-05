@@ -4,15 +4,22 @@ from django.template.loader import get_template
 from django.contrib.auth.models import User
 
 def mainpage(request):
-  return render_to_response('mainpage.html',
-    {
+  template = get_template('mainpage.html')
+  variables = Context({
       'titlehead': 'Receptes de laguela',
       'pagetitle': 'Welcome to the Receptes  app',
       'contentbody': 'Managing non legal funding since 2013'
-      #'user': request.user
     })
-  #output = template.render(variables)
-  #return HttpResponse(output)
+  output = template.render(variables)
+  return HttpResponse(output)
+
+def receptes_list(request):
+  template = get_template('receptes.html')
+  variables = Context({
+      'titlehead': 'Llista de totes les Receptes',      
+    })
+  output = template.render(variables)
+  return HttpResponse(output)
 
 def userpage(request, username):
   try:

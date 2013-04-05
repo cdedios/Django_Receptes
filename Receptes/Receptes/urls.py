@@ -9,8 +9,8 @@ urlpatterns = patterns('',
     url(r'^$', mainpage, name='home'),
     url(r'^user/(\w+)/$', userpage),
     #url(r'^login/$','django.contrib.auth.views.login'),
-    # url(r'^$', 'Receptes.views.home', name='home'),
-    # url(r'^Receptes/', include('Receptes.foo.urls')),
+    #url(r'^$', 'Receptes.views.home', name='home'),
+    url(r'^receptes/', receptes_list),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

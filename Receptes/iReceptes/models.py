@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 ### CATEGORIA (base, diari, de tan en quan..)
 class Categoria(models.Model):
     nom = models.CharField(max_length=120, unique=True)
-    order_index = models.PositiveIntegerField(null=True, blank=True)
 
     def __unicode__(self):
         return self.nom
@@ -31,7 +30,6 @@ class Recepta(models.Model):
   description = models.TextField(max_length=400, blank=True)
   category = models.ForeignKey(Categoria)
 
-  #user = models.ForeignKey(User)
   def __unicode__(self):
     return self.nom
 
@@ -53,14 +51,12 @@ class Ingredient(models.Model):
 
   quantitat = models.FloatField()#core=True)
   unitat = models.CharField(max_length=40)
-  recepta = models.ForeignKey(Recepta)
-  aliment = models.ForeignKey(Aliment)
+  recepta = models.ForeignKey(Recepta,blank=True, null=True)
+  aliment = models.ForeignKey(Aliment,blank=True, null=True)
   prep_method = models.ForeignKey(MetodePreparacio, null=True,blank=True)
-  order_index = models.PositiveIntegerField(blank=True, null=True)
   pas = models.ForeignKey(Pas, blank=True, null=True)
-  user = models.ForeignKey(User)
 
 
   def __unicode__(self):      
-      return self.aliment
+      return u'asdfas %f %s %s '%(self.quantitat,self.unitat,self.aliment.nom)
 
