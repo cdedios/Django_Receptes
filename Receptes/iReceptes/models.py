@@ -36,7 +36,7 @@ class Recepta(models.Model):
 ### PAS
 class Pas(models.Model):
     
-    text = models.TextField(blank=True)#, core=True)
+    text = models.TextField(blank=True)
     recepta = models.ForeignKey(Recepta)
     order = models.IntegerField(blank=True, null=True)
 
@@ -58,5 +58,5 @@ class Ingredient(models.Model):
 
 
   def __unicode__(self):      
-      return u'asdfas %f %s %s '%(self.quantitat,self.unitat,self.aliment.nom)
+      return u' %f %s %s '%(self.quantitat,self.unitat,self.aliment.nom)
 

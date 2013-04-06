@@ -2,7 +2,7 @@ from django.http import HttpResponse, Http404
 from django.template import Context
 from django.template.loader import get_template
 from django.contrib.auth.models import User
-from iReceptes.models import Recepta
+from iReceptes.models import Recepta, Categoria, Aliment, MetodePreparacio, Recepta, Pas, Ingredient
 
 def mainpage(request):
   template = get_template('mainpage.html')
@@ -19,6 +19,15 @@ def receptes_list(request):
   variables = Context({
       'titlehead': 'Llista de totes les Receptes',
       'Receptas' : Recepta.objects.all      
+    })
+  output = template.render(variables)
+  return HttpResponse(output)
+
+def recepta_desc(request):
+  template = get_template('recepta.html')
+  variables = Context({
+      'titlehead': 'Descripcio de la Recepta: ',
+      'Recepta' : Recepta.objects.all      
     })
   output = template.render(variables)
   return HttpResponse(output)

@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     #url(r'^login/$','django.contrib.auth.views.login'),
     #url(r'^$', 'Receptes.views.home', name='home'),
     url(r'^receptes/', receptes_list),
+    url(r'^recepta/(\w+)/$', recepta_desc),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
