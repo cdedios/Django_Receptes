@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content % }
+        
+      {% for recepta in Receptas %}
+        <li><a href="/recepta/{{ recepta.id }}/">{{ recepta.nom }}</a>: {{ recepta.description }}</li>
+      {% endfor %}
+
+{% endblock %}
