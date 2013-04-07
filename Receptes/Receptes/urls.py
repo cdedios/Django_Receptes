@@ -10,8 +10,18 @@ urlpatterns = patterns('',
     url(r'^user/(\w+)/$', userpage),
     #url(r'^login/$','django.contrib.auth.views.login'),
     #url(r'^$', 'Receptes.views.home', name='home'),
+
+    #RECEPTES
     url(r'^receptes/', receptes_list),
-    url(r'^recepta/(\w+)/$', recepta_desc),
+    url(r'^receptes/(\w+)/$', recepta_desc),
+    url(r'^recepta/recepta/$', recepta_desc),
+
+    #INGREDIENTS
+    url(r'^ingredients/', ingredients_list),
+
+    #ALIMENTS
+    url(r'^aliments/', aliments_list),
+
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

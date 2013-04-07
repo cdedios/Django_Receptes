@@ -5,12 +5,24 @@
   </head>
 
   <body>
-    <h1>Llista de Receptes en general </h1>
-    <ul>     
+    <h1>Descripcio Recepta</h1>         
+      <b>{{nom_recepta}}</b>
+      <b>{{descripcio_recepta}}</b>
+        <ul>
+          <h1>Passos: </h1>         
+             {% for pas in Passos %} <!-- estarie guay feru ordenadamen --> 
+              <li>
+                  <a href="/passos/pas/{{ pas.id }}">{{ pas.text }}</a>
+              </li>
+             {% endfor %}
+          <h1>Ingredients: </h1>           
+             {% for ingredient in Ingredients %} 
+              <li>
+                  <a href="/ingredients/ingredient/{{ ingredient.id }}">{{ ingredient.quantitat }}{{ ingredient.unitat }}{{ ingredient.aliment.nom }}</a>
+              </li>
+             {% endfor %}
       
-        <li>
-	        {{desc}}
-        </li>
+    </ul>
   </body>
 
 </html>

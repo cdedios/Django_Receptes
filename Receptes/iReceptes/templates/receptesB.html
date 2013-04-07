@@ -1,9 +1,13 @@
 {% extends "base.html" %}
 
-{% block content % }
+{% block content %}
         
+     <h2>Llista de Receptes en general </h2>
+    <ul>     
       {% for recepta in Receptas %}
-        <li><a href="/recepta/{{ recepta.id }}/">{{ recepta.nom }}</a>: {{ recepta.description }}</li>
+        <li><a href="/receptes/recepta/{{ recepta.id }}">{{ recepta.nom }}</a> : {{ recepta.description }}
+        </li>
       {% endfor %}
+    </ul>
 
 {% endblock %}

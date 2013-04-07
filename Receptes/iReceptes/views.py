@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from iReceptes.models import Recepta, Categoria, Aliment, MetodePreparacio, Recepta, Pas, Ingredient
 
 def mainpage(request):
-  template = get_template('mainpage.html')
+  template = get_template('mainpageB.html')
   variables = Context({
       'titlehead': 'Receptes de laguela',
       'pagetitle': 'Welcome to the Receptes  app',
@@ -15,9 +15,10 @@ def mainpage(request):
   return HttpResponse(output)
 
 def receptes_list(request):
-  template = get_template('receptes.html')
+  template = get_template('receptesB.html')
   variables = Context({
       'titlehead': 'Llista de totes les Receptes',
+      'pagetitle': 'Receptes  app',
       'Receptas' : Recepta.objects.all      
     })
   output = template.render(variables)
@@ -28,6 +29,24 @@ def recepta_desc(request):
   variables = Context({
       'titlehead': 'Descripcio de la Recepta: ',
       'Recepta' : Recepta.objects.all      
+    })
+  output = template.render(variables)
+  return HttpResponse(output)
+
+def ingredients_list(request):
+  template = get_template('ingredients.html')
+  variables = Context({
+      'titlehead': 'Llista de tots els Ingredients',
+      'Ingredients' : Ingredient.objects.all      
+    })
+  output = template.render(variables)
+  return HttpResponse(output)
+
+def aliments_list(request):
+  template = get_template('aliments.html')
+  variables = Context({
+      'titlehead': 'Llista de tots els Aliments',
+      'Aliments' : Aliment.objects.all      
     })
   output = template.render(variables)
   return HttpResponse(output)
