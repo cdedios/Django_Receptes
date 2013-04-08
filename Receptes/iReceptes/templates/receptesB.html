@@ -5,7 +5,7 @@
      <h2>Llista de Receptes en general </h2>
     <ul>     
       {% for recepta in Receptas %}
-        <li><a href="/receptes/recepta/{{ recepta.id }}">{{ recepta.nom }}</a> : {{ recepta.description }}
+        <li><a href="/receptes/recepta/{{ recepta.id }}">{{ recepta.nom }}</a>  Descripcio: {{ recepta.description }}
         </li>
       {% endfor %}
     </ul>
