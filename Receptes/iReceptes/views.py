@@ -69,7 +69,7 @@ def ingredient_desc(request, id):
         }
   except Recepta.DoesNotExist:
     raise Http404
-  return render_to_response('recepta.html',param)
+  return render_to_response('ingredient.html',param)
 
 #ALIMENTS
 def aliments_list(request):
@@ -97,13 +97,13 @@ def recepta_desc(request, id):
         }
   except Recepta.DoesNotExist:
     raise Http404
-  return render_to_response('receptaB.html',param)
+  return render_to_response('aliment.html',param)
 
 #CATEGORIA
 def categories_list(request):
   template = get_template('categories.html')
   variables = Context({
-      'titlehead': 'Llista de totes les Receptes',
+      'titlehead': 'Llista de totes les Categories',
       'pagetitle': 'Receptes  app',
       'Categories' : Categoria.objects.all      
     })
@@ -125,15 +125,15 @@ def recepta_desc(request, id):
         }
   except Recepta.DoesNotExist:
     raise Http404
-  return render_to_response('receptaB.html',param)
+  return render_to_response('categoria.html',param)
 
-#RECEPTA
-def receptes_list(request):
-  template = get_template('receptesB.html')
+#PASSOS
+def passos_list(request):
+  template = get_template('passos.html')
   variables = Context({
-      'titlehead': 'Llista de totes les Receptes',
+      'titlehead': 'Llista de tots els Passos',
       'pagetitle': 'Receptes  app',
-      'Receptas' : Recepta.objects.all      
+      'Passos' : Pas.objects.all      
     })
   output = template.render(variables)
   return HttpResponse(output)
@@ -153,17 +153,32 @@ def recepta_desc(request, id):
         }
   except Recepta.DoesNotExist:
     raise Http404
-  return render_to_response('receptaB.html',param)
+  return render_to_response('pas.html',param)
 
-
-def aliments_list(request):
-  template = get_template('alimentsB.html')
+#METODES
+def metodes_list(request):
+  template = get_template('metodes.html')
   variables = Context({
-      'titlehead': 'Llista de tots els Aliments',
+      'titlehead': 'Llista de tots els Metodes',
       'pagetitle': 'Receptes  app',
-      'Aliments' : Aliment.objects.all      
+      'Passos' : Metode.objects.all      
     })
   output = template.render(variables)
   return HttpResponse(output)
 
-
+def recepta_desc(request, id):
+  try:
+    recepta = Recepta.objects.get(pk=id)
+    #passos = Pas.objects.get(recepta.nom=recepta_name)
+    #ingredients = Ingredient.objects.get(recepta.nom=recepta_name)
+    param = {
+        'titlehead' : "Detalls recepta",
+			  'nom_recepta' : recepta.nom ,
+        'descripcio_recepta' : recepta.description,
+        'categoria_recepta' : recepta.category
+        #'Passos' : passos ,
+			  #'Ingredients' : ingredients 
+        }
+  except Recepta.DoesNotExist:
+    raise Http404
+  return render_to_response('metode.html',param)

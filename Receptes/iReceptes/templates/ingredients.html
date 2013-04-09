@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>Llista de {{ titlehead }} </h1>
+<h1> {{ titlehead }} </h1>
     <ul>     
       {% for ingredient in Ingredients %}
         <li><a href="/ingredients/{{ ingredient.id }}">{{ ingredient.quantitat }}{{ ingredient.unitat }}{{ ingredient.aliment.nom }}</a> 
