@@ -4,8 +4,9 @@ from django.template.loader import get_template
 from django.contrib.auth.models import User
 from iReceptes.models import *
 from django.shortcuts import render_to_response
+
 def mainpage(request):
-  template = get_template('mainpageB.html')
+  template = get_template('mainpage.html')
   variables = Context({
       'titlehead': 'Receptes de laguela',
       'pagetitle': 'Welcome to the Receptes  app',
@@ -14,8 +15,9 @@ def mainpage(request):
   output = template.render(variables)
   return HttpResponse(output)
 
+#RECEPTA
 def receptes_list(request):
-  template = get_template('receptesB.html')
+  template = get_template('receptes.html')
   variables = Context({
       'titlehead': 'Llista de totes les Receptes',
       'pagetitle': 'Receptes  app',
@@ -24,18 +26,26 @@ def receptes_list(request):
   output = template.render(variables)
   return HttpResponse(output)
 
-def recepta_desc(request):
-  template = get_template('recepta.html')
-  variables = Context({
-      'titlehead': 'Descripcio de la Recepta: ',
-      'pagetitle': 'Receptes  app',
-      'Recepta' : Recepta.objects.all      
-    })
-  output = template.render(variables)
-  return HttpResponse(output)
+def recepta_desc(request, id):
+  try:
+    recepta = Recepta.objects.get(pk=id)
+    #passos = Pas.objects.get(recepta.nom=recepta_name)
+    #ingredients = Ingredient.objects.get(recepta.nom=recepta_name)
+    param = {
+        'titlehead' : "Detalls recepta",
+			  'nom_recepta' : recepta.nom ,
+        'descripcio_recepta' : recepta.description,
+        'categoria_recepta' : recepta.category
+        #'Passos' : passos ,
+			  #'Ingredients' : ingredients 
+        }
+  except Recepta.DoesNotExist:
+    raise Http404
+  return render_to_response('recepta.html',param)
 
+#INGREDIENTS
 def ingredients_list(request):
-  template = get_template('ingredientsB.html')
+  template = get_template('ingredients.html')
   variables = Context({
       'titlehead': 'Llista de tots els Ingredients',
       'pagetitle': 'Receptes  app',
@@ -44,9 +54,37 @@ def ingredients_list(request):
   output = template.render(variables)
   return HttpResponse(output)
 
-def recepta_desc(request, recepta_desc):
+def ingredient_desc(request, id):
   try:
-    recepta = Recepta.objects.get(pk=recepta_desc)
+    recepta = Ingredient.objects.get(pk=id)
+    #passos = Pas.objects.get(recepta.nom=recepta_name)
+    #ingredients = Ingredient.objects.get(recepta.nom=recepta_name)
+    param = {
+        'titlehead' : "Detalls recepta",
+			  'nom_recepta' : recepta.nom ,
+        'descripcio_recepta' : recepta.description,
+        'categoria_recepta' : recepta.category
+        #'Passos' : passos ,
+			  #'Ingredients' : ingredients 
+        }
+  except Recepta.DoesNotExist:
+    raise Http404
+  return render_to_response('recepta.html',param)
+
+#ALIMENTS
+def aliments_list(request):
+  template = get_template('aliments.html')
+  variables = Context({
+      'titlehead': 'Llista de tots els Aliments',
+      'pagetitle': 'Receptes  app',
+      'Aliments' : Aliment.objects.all      
+    })
+  output = template.render(variables)
+  return HttpResponse(output)
+
+def recepta_desc(request, id):
+  try:
+    recepta = Recepta.objects.get(pk=id)
     #passos = Pas.objects.get(recepta.nom=recepta_name)
     #ingredients = Ingredient.objects.get(recepta.nom=recepta_name)
     param = {
@@ -60,6 +98,63 @@ def recepta_desc(request, recepta_desc):
   except Recepta.DoesNotExist:
     raise Http404
   return render_to_response('receptaB.html',param)
+
+#CATEGORIA
+def categories_list(request):
+  template = get_template('categories.html')
+  variables = Context({
+      'titlehead': 'Llista de totes les Receptes',
+      'pagetitle': 'Receptes  app',
+      'Categories' : Categoria.objects.all      
+    })
+  output = template.render(variables)
+  return HttpResponse(output)
+
+def recepta_desc(request, id):
+  try:
+    recepta = Recepta.objects.get(pk=id)
+    #passos = Pas.objects.get(recepta.nom=recepta_name)
+    #ingredients = Ingredient.objects.get(recepta.nom=recepta_name)
+    param = {
+        'titlehead' : "Detalls recepta",
+			  'nom_recepta' : recepta.nom ,
+        'descripcio_recepta' : recepta.description,
+        'categoria_recepta' : recepta.category
+        #'Passos' : passos ,
+			  #'Ingredients' : ingredients 
+        }
+  except Recepta.DoesNotExist:
+    raise Http404
+  return render_to_response('receptaB.html',param)
+
+#RECEPTA
+def receptes_list(request):
+  template = get_template('receptesB.html')
+  variables = Context({
+      'titlehead': 'Llista de totes les Receptes',
+      'pagetitle': 'Receptes  app',
+      'Receptas' : Recepta.objects.all      
+    })
+  output = template.render(variables)
+  return HttpResponse(output)
+
+def recepta_desc(request, id):
+  try:
+    recepta = Recepta.objects.get(pk=id)
+    #passos = Pas.objects.get(recepta.nom=recepta_name)
+    #ingredients = Ingredient.objects.get(recepta.nom=recepta_name)
+    param = {
+        'titlehead' : "Detalls recepta",
+			  'nom_recepta' : recepta.nom ,
+        'descripcio_recepta' : recepta.description,
+        'categoria_recepta' : recepta.category
+        #'Passos' : passos ,
+			  #'Ingredients' : ingredients 
+        }
+  except Recepta.DoesNotExist:
+    raise Http404
+  return render_to_response('receptaB.html',param)
+
 
 def aliments_list(request):
   template = get_template('alimentsB.html')
