@@ -1,0 +1,19 @@
+{% load staticfiles %}
+<html>
+  <head>
+    <title>Receptes {{ titlehead }}</title>
+  </head>
+  <body>
+    <h1>{{pagetitle}}</h1><br />    
+    <h3>Menu</h3>
+      <a href="/">Home</a> <br />
+      <a href="/receptes">Llista de Receptes</a><br />
+      <a href="/aliments">Llista d'Aliments</a><br />
+      <a href="/ingredients">Llista d'Ingredients</a></br>
+
+    <div id="content">
+      {% block content %}{% endblock %}
+    </div>
+
+  </body>
+</html>
