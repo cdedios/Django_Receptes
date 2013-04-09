@@ -56,16 +56,14 @@ def ingredients_list(request):
 
 def ingredient_desc(request, id):
   try:
-    recepta = Ingredient.objects.get(pk=id)
-    #passos = Pas.objects.get(recepta.nom=recepta_name)
-    #ingredients = Ingredient.objects.get(recepta.nom=recepta_name)
+    ingredient = Ingredient.objects.get(pk=id)
     param = {
         'titlehead' : "Detalls recepta",
-			  'nom_recepta' : recepta.nom ,
-        'descripcio_recepta' : recepta.description,
+			  'quantitat_ingredient' : ingredient.quantitat ,
+        'unitat_ingredient' : ingredient.unitat ,
+        'aliment_ingredient' : ingredient.aliment.nom ,
+        'recepta_ingredient' : ingredient.recepta.nom,
         'categoria_recepta' : recepta.category
-        #'Passos' : passos ,
-			  #'Ingredients' : ingredients 
         }
   except Recepta.DoesNotExist:
     raise Http404
@@ -161,7 +159,7 @@ def metodes_list(request):
   variables = Context({
       'titlehead': 'Llista de tots els Metodes',
       'pagetitle': 'Receptes  app',
-      'Passos' : Metode.objects.all      
+      'Metodes' : MetodePreparacio.objects.all      
     })
   output = template.render(variables)
   return HttpResponse(output)

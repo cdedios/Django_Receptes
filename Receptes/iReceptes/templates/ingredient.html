@@ -3,22 +3,8 @@
 {% block content %}
 
 <h1>Descripcio Recepta</h1>         
-      <b>{{nom_recepta}}</b>
-      <b>{{descripcio_recepta}}</b>
-        <ul>
-          <h1>Passos: </h1>         
-             {% for pas in Passos %} <!-- estarie guay feru ordenadamen --> 
-              <li>
-                  <a href="/passos/pas/{{ pas.id }}">{{ pas.text }}</a>
-              </li>
-             {% endfor %}
-          <h1>Ingredients: </h1>           
-             {% for ingredient in Ingredients %} 
-              <li>
-                  <a href="/ingredients/ingredient/{{ ingredient.id }}">{{ ingredient.quantitat }}{{ ingredient.unitat }}{{ ingredient.aliment.nom }}</a>
-              </li>
-             {% endfor %}
-      
-    </ul>
-
+      <b>{{quantitat_ingredient}} {{unitat_ingredient}} de {aliment_ingredient}</b>
+      <b>S'usa  a la recepta {{recepta_ingredient}}</b>
+      <b>En el pas: {{pas_ingredient}}</b>
+      <b>amb el metode: {{metode_ingredient}}</b>     
 {% endblock %}
