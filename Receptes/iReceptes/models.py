@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 ### CATEGORIA (base, diari, de tan en quan..)
 class Categoria(models.Model):
     nom = models.CharField(max_length=120, unique=True)
-
     def __unicode__(self):
         return self.nom
 

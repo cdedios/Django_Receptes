@@ -11,17 +11,25 @@ urlpatterns = patterns('',
     url(r'^login/$','django.contrib.auth.views.login'),
 
     #RECEPTES
-    url(r'^receptes/', receptes_list),
-    url(r'^receptes/(\w+)/$', recepta_desc),
-    url(r'^receptes/(?P<recepta_name>\w+)/$', brand_detail , name='brand detail'),
-    url(r'^recepta/recepta/$', recepta_desc),
+    url(r'^receptes/$', receptes_list),
+    url(r'^receptes/(?P<recepta_desc>\w+)', recepta_desc),
+    url(r'^receptes/recepta/$', recepta_desc),
+   # url(r'^receptes/recepta/(?P<id>\w+)/$', recepta_desc , name='recepta desc'),
+    url(r'^recepta/recepta/(?P<recepta_name>\w+)', recepta_desc, name = 'recepta desc'),
 
     #INGREDIENTS
     url(r'^ingredients/', ingredients_list),
     #url(r'^ingredients/(?P<ingredient_name>\w+)/$', ingredient_detail , name='ingredient detail'),
     #url(r'^ingredients/$', ingredient_desc),
+
     #ALIMENTS
     url(r'^aliments/', aliments_list),
+
+    #CATEGORIA
+    #url(r'^categories/', categoria_list),
+    #url(r'^receptes/(\w+)/$', categoria_desc),
+    #url(r'^receptes/(?P<recepta_name>\w+)/$', categoria_desc, name='categoria desc'),
+    #url(r'^recepta/recepta/$', recepta_desc),
 
 
     # Uncomment the admin/doc line below to enable admin documentation:

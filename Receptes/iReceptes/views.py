@@ -2,8 +2,8 @@ from django.http import HttpResponse, Http404
 from django.template import Context
 from django.template.loader import get_template
 from django.contrib.auth.models import User
-from iReceptes.models import Recepta, Categoria, Aliment, MetodePreparacio, Recepta, Pas, Ingredient
-
+from iReceptes.models import *
+from django.shortcuts import render_to_response
 def mainpage(request):
   template = get_template('mainpageB.html')
   variables = Context({
@@ -44,20 +44,22 @@ def ingredients_list(request):
   output = template.render(variables)
   return HttpResponse(output)
 
-def recepta_detail(request, recepta_name):
+def recepta_desc(request, recepta_desc):
   try:
-    recepta = Recepta.objects.get(nom=recepta_name)
+    recepta = Recepta.objects.get(pk=recepta_desc)
     #passos = Pas.objects.get(recepta.nom=recepta_name)
     #ingredients = Ingredient.objects.get(recepta.nom=recepta_name)
     param = {
         'titlehead' : "Detalls recepta",
 			  'nom_recepta' : recepta.nom ,
         'descripcio_recepta' : recepta.description,
-        'Passos' : passos ,
-			  'Ingredients' : ingredients }
+        'categoria_recepta' : recepta.category
+        #'Passos' : passos ,
+			  #'Ingredients' : ingredients 
+        }
   except Recepta.DoesNotExist:
     raise Http404
-  return render_to_response('receptaB.html',param,context_instance=RequestContext(request))
+  return render_to_response('receptaB.html',param)
 
 def aliments_list(request):
   template = get_template('alimentsB.html')
