@@ -1,14 +1,10 @@
 {% extends "index.html" %}
-<html>
-  <head>
-    <title>{{ titlehead}}</title>
-  </head>
-  <body>
-    <h1>{{ pagetitle }}</h1>
 
-    <p>{{ contentbody }}</p>
-    <p><a href="/receptes/">Veure llista de Receptes</a></p>
-    <p><a href="/ingredients/">Veure llista de Ingredients</a></p>
-    <p><a href="/aliments/">Veure llista de Aliments</a></p>
-  </body>
-</html>
+{% block content %}
+    {% if user.username %}
+      <p> Welcome {{ user.username }} <p>
+    {% else %}
+    <p> Welcome Guest! if you want you can <a href="/login">Login</a></p>
+    {% endif %}     
+
+{% endblock %}

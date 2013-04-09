@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<h1>Llista de {{ titlehead }} </h1>
+    <ul>     
+      {% for categoria in Categories %}
+        <li><a href="/categories/{{ categoria.id }}">{{ categoria.nom}}</a> 
+        </li>
+      {% endfor %}
+    </ul>
+
+{% endblock %}
