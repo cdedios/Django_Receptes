@@ -211,12 +211,78 @@ a:hover {
 	margin: 0 auto;
 	padding: 30px 0px;
 }
+/* Sidebar */
+
+#sidebar {
+	float: right;
+	width: 200px;
+	margin: 0px;
+	padding: 30px 0px 0px 0px;
+}
+
+#sidebar ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#sidebar li {
+	margin: 0;
+	padding: 0;
+}
+
+#sidebar li ul {
+	margin: 0px 0px;
+	padding-bottom: 60px;
+}
+
+#sidebar li li {
+	line-height: 40px;
+	border-bottom: 1px solid #E7EBED;
+	margin: 0px 0px;
+	border-left: none;
+}
+
+#sidebar li li span {
+	display: block;
+	margin-top: -20px;
+	padding: 0;
+	font-size: 11px;
+	font-style: italic;
+}
+
+#sidebar li li a {
+	padding: 0px 0px 0px 20px;
+	background: url(images/img04.jpg) no-repeat left 50%;
+}
+
+#sidebar h2 {
+	height: 38px;
+	padding: 0px 0px 30px 0px;
+	letter-spacing: -.5px;
+	font-size: 1.8em;
+	color: #222222;
+}
+
+#sidebar p {
+	margin: 0 0px;
+	padding: 0px 30px 20px 30px;
+	text-align: justify;
+}
+
+#sidebar a {
+	border: none;
+}
+
+#sidebar a:hover {
+	text-decoration: underline;
+}
 
 /* Content */
 
 #content {
 	float: left;
-	width: 1000px;
+	width: 775px;
 	padding: 0px 0px 0px 0px;
 }
 

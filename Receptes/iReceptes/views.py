@@ -1,5 +1,5 @@
 from django.http import HttpResponse, Http404
-from django.template import Context
+from django.template import Context, RequestContext
 from django.template.loader import get_template
 from django.contrib.auth.models import User
 from iReceptes.models import *
@@ -17,14 +17,13 @@ def mainpage(request):
 
 #RECEPTA
 def receptes_list(request):
-  template = get_template('receptes.html')
   variables = Context({
       'titlehead': 'Llista de totes les Receptes',
       'pagetitle': 'Receptes  app',
       'Receptas' : Recepta.objects.all      
     })
-  output = template.render(variables)
-  return HttpResponse(output)
+  context = RequestContext(request)
+  return render_to_response('receptes.html',variables,context)
 
 def recepta_desc(request, id):
   try:
@@ -51,8 +50,8 @@ def ingredients_list(request):
       'pagetitle': 'Receptes  app',
       'Ingredients' : Ingredient.objects.all      
     })
-  output = template.render(variables)
-  return HttpResponse(output)
+  context = RequestContext(request)
+  return render_to_response('receptes.html',variables,context)
 
 def ingredient_desc(request, id):
   try:
@@ -67,26 +66,22 @@ def ingredient_desc(request, id):
 
 #ALIMENTS
 def aliments_list(request):
-  template = get_template('aliments.html')
   variables = Context({
       'titlehead': 'Llista de tots els Aliments',
       'pagetitle': 'Receptes  app',
       'Aliments' : Aliment.objects.all      
     })
-  output = template.render(variables)
-  return HttpResponse(output)
+  context = RequestContext(request)
+  return render_to_response('aliments.html',variables,context)
 
 def aliment_desc(request, id):
   try:
     aliment = Aliment.objects.get(pk=id)
-    recepta = Recepta.objects.filter(aliment=aliment)
+    receptes = Recepta.objects.filter(aliment=aliment)
     param = {
         'titlehead' : "Detalls recepta",
-			  'aliment_nom' : recepta.nom ,
-        'descripcio_recepta' : recepta.description,
-        'categoria_recepta' : recepta.category
-        #'Passos' : passos ,
-			  #'Ingredients' : ingredients 
+			  'aliment_nom' : aliment.nom ,
+        'Receptes' : receptes,
         }
   except Recepta.DoesNotExist:
     raise Http404
@@ -100,6 +95,7 @@ def categories_list(request):
       'pagetitle': 'Receptes  app',
       'Categories' : Categoria.objects.all      
     })
+  output = template.render(variables)
   output = template.render(variables)
   return HttpResponse(output)
 
@@ -142,14 +138,15 @@ def pas_desc(request, id):
 
 #METODES
 def metodes_list(request):
-  template = get_template('metodes.html')
+  #template = get_template('metodes.html')
   variables = Context({
       'titlehead': 'Llista de tots els Metodes',
       'pagetitle': 'Receptes  app',
-      'Metodes' : MetodePreparacio.objects.all      
+      'Metodes' : MetodePreparacio.objects.all(),      
     })
-  output = template.render(variables)
-  return HttpResponse(output)
+  #output = template.render(variables)
+  context = RequestContext(request)
+  return render_to_response('metode.html',variables,context)
 
 def metode_desc(request, id):
   try:

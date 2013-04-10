@@ -40,7 +40,23 @@
       
 		</div>
 		<!-- end #content -->
+		<div id="sidebar">
+			<ul>
+				<li>
+					<h2>LOGIN</h2>
+					{% if user.username %}
+            <p> Welcome {{ user.username }} <p>
+            <p> <a href="/logout">Logout</a></p>
+          {% else %}
+            <p> Welcome Guest! if you want you can <a href="/login">Login</a></p>
+            {% endif %}     
+            
+				</li>
 
+			
+			</ul>
+		</div>
+		<!-- end #sidebar -->
 	</div>
 	<!-- end #page --> 
 </div>

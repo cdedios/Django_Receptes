@@ -20,7 +20,7 @@ urlpatterns = patterns('',
 
     #ALIMENTS
     url(r'^aliments/$', aliments_list),
-    #url(r'^aliments/(?P<ingredient_name>\w+)', aliment_desc),
+    url(r'^aliments/(?P<id>\w+)/$', aliment_desc),
 
     #CATEGORIES
     url(r'^categories/$', categories_list),
