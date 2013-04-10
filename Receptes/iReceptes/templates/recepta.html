@@ -1,26 +1,24 @@
 {% extends "index.html" %}
 
 {% block content %}
-        
-      <b>{{nom_recepta}}</b>
-      <b>{{descripcio_recepta}}</b>
-      <b>{{categoria_recepta}}</b> 
-kykuyk
-        <ul>
-<!-- 
-          <h1>Passos: </h1>         
-             {% for pas in Passos %} <!-- estarie guay feru ordenadamen  
-              <li>
-                  <a href="/passos/pas/{{ pas.id }}">{{ pas.text }}</a>
-              </li>
+
+  <h1>{{nom_recepta}} </h1>         
+      <p>{{descripcio_recepta}}</p>
+      <p>Categoria: <a href="/passos/{{ pas.id }}">{{categoria_recepta}}</a></b>    
+
+  <h1>Passos: </h1>         
+             {% for pas in Passos %} <!-- llista ja ordenada  --> 
+              <ol>
+                  <a href="/passos/{{ pas.id }}">{{ pas.text }}</a>
+              </ol>
              {% endfor %}
-          <h1>Ingredients: </h1>           
+  <h1>Ingredients: </h1>           
              {% for ingredient in Ingredients %} 
               <li>
-                  <a href="/ingredients/ingredient/{{ ingredient.id }}">{{ ingredient.quantitat }}{{ ingredient.unitat }}{{ ingredient.aliment.nom }}</a>
+                  <a href="/ingredients/{{ ingredient.id }}">{{ ingredient.quantitat }}{{ ingredient.unitat }}{{ ingredient.aliment.nom }}</a>
               </li>
              {% endfor %}
---> 
+  
       
-    </ul>
+
 {% endblock %}

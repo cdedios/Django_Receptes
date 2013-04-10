@@ -52,7 +52,7 @@ a:hover {
 }
 
 #wrapper {
-	background: #FFFFFF url({% static "images/img05.jpg"%}) repeat;
+	background: #FFFFFF url(../images/img05.jpg) repeat;
 }
 
 .container {
@@ -161,7 +161,7 @@ a:hover {
 }
 
 #menu a:hover, #menu .current_page_item a {
-	background: url(images/img01.jpg) repeat;
+	background: url(../images/img01.jpg) repeat;
 	border-radius: 8px;
 	text-decoration: none;
 	color: #FFFFFF;
@@ -227,7 +227,7 @@ a:hover {
 	margin: 0px auto;
 	width: 1000px;
 	height: 340px;
-	background: url(images/img03.png) no-repeat left bottom;
+	background: url(../images/img03.png) no-repeat left bottom;
 }
 
 #banner img

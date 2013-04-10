@@ -12,11 +12,11 @@ urlpatterns = patterns('',
 
     #RECEPTES
     url(r'^receptes/$', receptes_list),
-    url(r'^receptes/(?P<id>\w+)', recepta_desc),
+    url(r'^receptes/(?P<id>\w+)/$', recepta_desc),
     
     #INGREDIENTS
     url(r'^ingredients/$', ingredients_list),
-    url(r'^ingredients/(?P<ingredient_name>\w+)', ingredient_desc),
+    url(r'^ingredients/(?P<id>\w+)/$', ingredient_desc),
 
     #ALIMENTS
     url(r'^aliments/$', aliments_list),
@@ -24,15 +24,15 @@ urlpatterns = patterns('',
 
     #CATEGORIES
     url(r'^categories/$', categories_list),
-    #url(r'^receptes/(\w+)/$', categoria_desc),
+    url(r'^categories/(?P<id>\w+)/$', categoria_desc),
     
     #PASSOS
     url(r'^passos/$', passos_list),
-    #url(r'^passos/(?P<ingredient_name>\w+)', pas_desc),
+    url(r'^passos/(?P<id>\w+)/$', pas_desc),
 
     #METODES PREPARACIO
     url(r'^metodes/$', metodes_list),
-    #url(r'^metodes/(?P<ingredient_name>\w+)', metode_desc),
+    url(r'^metodes/(?P<id>\w+)/$', metode_desc),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
