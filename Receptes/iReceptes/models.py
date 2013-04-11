@@ -48,7 +48,7 @@ class Pas(models.Model):
 ### INGREDIENT
 class Ingredient(models.Model):
 
-  quantitat = models.FloatField()#core=True)
+  quantitat = models.FloatField()
   unitat = models.CharField(max_length=40)
   recepta = models.ForeignKey(Recepta,blank=True, null=True)
   aliment = models.ForeignKey(Aliment,blank=True, null=True)
