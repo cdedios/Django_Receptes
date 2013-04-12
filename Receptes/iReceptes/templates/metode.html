@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+
+{% block content %}
+        
+
+          <h1>Ingredients que fan servir el metode {{metode_nom}}</h1>         
+             {% for ingredient in Ingredients %}
+              <li>
+                  <a href="/ingredients/{{ ingredient.id }}">{{ingredient.quantitat}} {{ingredient.unitat}} de {{ingredient.aliment}}</a>
+              </li>
+             {% endfor %} 
+
+{% endblock %}

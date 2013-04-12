@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+
+{% block content %}
+        
+      <h1>{{pas.text}}</h1>     
+      
+        <ul>
+
+          <h1>Llista de ingredients els quals fan servir el pas: </h1>         
+             {% for ingredient in Ingredients %} 
+              <li>
+                  <a href="/ingredients/{{ingredient.id}}">{{ingredient.quantitat}} {{ingredient.unitat}} de {{ingredient.aliment}}</a>
+              </li>
+             {% endfor %}
+                
+    </ul>
+{% endblock %}
