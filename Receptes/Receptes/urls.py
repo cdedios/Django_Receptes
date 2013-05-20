@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     #RECEPTES
     url(r'^receptes/$', receptes_list),
     url(r'^receptes/(?P<id>\w+)/$', recepta_desc),
+    url(r'^receptes/create/$', ReceptaCreate.as_view(), name='recepta_create'),
     
     #INGREDIENTS
     url(r'^ingredients/$', ingredients_list),

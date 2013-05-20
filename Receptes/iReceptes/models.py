@@ -7,8 +7,12 @@ from datetime import date
 ### CATEGORIA (base, diari, de tan en quan..)
 class Categoria(models.Model):
     nom = models.CharField(max_length=120, unique=True)
+    
     def __unicode__(self):
         return self.nom
+
+    def get_absolute_url(self):
+      return reverse('detail_categoria',kwargs={'id':self.pk})
 
 ### ALIMENT
 class Aliment(models.Model):
@@ -18,12 +22,18 @@ class Aliment(models.Model):
     def __unicode__(self):
         return self.nom
 
+    def get_absolute_url(self):
+      return reverse('detail_aliment',kwargs={'idAliment':self.pk})
+
 ### METODEPREPARACIO
 class MetodePreparacio(models.Model):
     nom = models.CharField(max_length=60, blank=True)
 
     def __unicode__(self):
         return self.nom
+
+    def get_absolute_url(self):
+      return reverse('detail_metode',kwargs={'idMetode':self.pk})
 
 ### RECEPTA
 class Recepta(models.Model):
@@ -33,6 +43,9 @@ class Recepta(models.Model):
 
   def __unicode__(self):
     return self.nom
+
+    def get_absolute_url(self):
+      return reverse('detail_recepta',kwargs={'idRecepta':self.pk})
 
 ### PAS
 class Pas(models.Model):
@@ -47,6 +60,9 @@ class Pas(models.Model):
             ret += "..."
         return ret
 
+    def get_absolute_url(self):
+      return reverse('detail_pas',kwargs={'idPas':self.pk})
+
 ### INGREDIENT
 class Ingredient(models.Model):
 
@@ -60,4 +76,7 @@ class Ingredient(models.Model):
 
   def __unicode__(self):      
       return u' %f %s %s '%(self.quantitat,self.unitat,self.aliment.nom)
+
+  def get_absolute_url(self):
+      return reverse('detail_ingredient',kwargs={'id':self.id})
 

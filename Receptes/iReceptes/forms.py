@@ -4,9 +4,23 @@ from iReceptes.models import *
 class ReceptaForm(ModelForm):
   class Meta:
     model = Recepta
-    exclude = ('user',)
 
 class IngredientForm(ModelForm):
   class Meta:
     model = Ingredient
-    exclude = ('user',)
+
+class AlimentForm(ModelForm):
+  class Meta:
+    model = Aliment
+
+class CategoriaForm(ModelForm):
+  class Meta:
+    model = Categoria
+
+class PasForm(ModelForm):
+  class Meta:
+    model = Pas
+
+class MetodePreparacioForm(ModelForm):
+  class Meta:
+    model = MetodePreparacio

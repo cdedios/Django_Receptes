@@ -5,6 +5,10 @@ from django.contrib.auth.models import User
 from iReceptes.models import *
 from django.shortcuts import render_to_response
 
+from django.views.generic.edit import CreateView
+from django.views.generic import DetailView, UpdateView
+from forms import *
+
 def mainpage(request):
   template = get_template('mainpage.html')
   variables = Context({
@@ -42,6 +46,15 @@ def recepta_desc(request, id):
   except Recepta.DoesNotExist:
     raise Http404
   return render_to_response('recepta.html',param,context)
+
+class ReceptaCreate(CreateView):
+	model = Recepta
+	template_name = 'form.html'
+	form_class = ReceptaForm
+
+	def	form_valid(self, form):
+		form.instance.user = self.request.user
+		return super(ReceptaCreate, self).form_valid(form)
 
 #INGREDIENTS
 def ingredients_list(request):
@@ -112,6 +125,15 @@ def categoria_desc(request, id):
   except Recepta.DoesNotExist:
     raise Http404
   return render_to_response('categoria.html',param,context)
+
+class CategoriaCreate(CreateView):
+	model = Categoria
+	template_name = 'form.html'
+	form_class = CategoriaForm
+
+	def	form_valid(self, form):
+		form.instance.user = self.request.user
+		return super(ReceptaCreate, self).form_valid(form)
 
 #PASSOS
 def passos_list(request):
