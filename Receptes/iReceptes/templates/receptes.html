@@ -3,7 +3,6 @@
 {% block content %}
         
   <h1> {{ titlehead }} </h1>
-  </br><button><a href="create" > Crear </a></button>
     <ul>     
       {% for recepta in Receptas %}
         <li><a href="/receptes/{{ recepta.id }}">{{ recepta.nom }}</a>  Descripcio: {{ recepta.description }}

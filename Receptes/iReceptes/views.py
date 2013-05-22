@@ -1,13 +1,31 @@
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import Context, RequestContext
 from django.template.loader import get_template
 from django.contrib.auth.models import User
 from iReceptes.models import *
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response,get_object_or_404
 
+from django.core import urlresolvers
+from django.core.exceptions import PermissionDenied
+from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView
 from django.views.generic import DetailView, UpdateView
 from forms import *
+from django.utils.decorators import method_decorator
+
+
+class LoginRequiredMixin(object):
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(LoginRequiredMixin, self).dispatch(*args, **kwargs)
+
+class CheckIsOwnerMixin(object):
+    def get_object(self, *args, **kwargs):
+        obj = super(CheckIsOwnerMixin, self).get_object(*args, **kwargs)
+        if not obj.user == self.request.user:
+            raise PermissionDenied
+        return obj
 
 def mainpage(request):
   template = get_template('mainpage.html')
@@ -182,3 +200,21 @@ def metode_desc(request, id):
   except Recepta.DoesNotExist:
     raise Http404
   return render_to_response('metode.html',param,context)
+
+#SEGONA PART
+
+class IngredientCreate(LoginRequiredMixin, CreateView):
+    model = Ingredient
+    template_name = 'form.html'
+    form_class = IngredientForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.ingredient = Ingredient.objects.get(id=self.kwargs['pk'])
+        return super(IngredientCreate, self).form_valid(form)
+
+class IngredientUpdate(LoginRequiredMixin, CheckIsOwnerMixin, UpdateView):
+    model = Ingredient
+    template_name = 'form.html'
+    form_class = IngredientForm
+

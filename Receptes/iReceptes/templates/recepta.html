@@ -12,13 +12,14 @@
                   <a href="/passos/{{ pas.id }}">{{ pas.text }}</a>
               </ol>
              {% endfor %}
-  <h1>Ingredients: </h1>           
+  <h1>Ingredients: </h1>          
              {% for ingredient in Ingredients %} 
               <li>
                   <a href="/ingredients/{{ ingredient.id }}">{{ ingredient.quantitat }}{{ ingredient.unitat }}{{ ingredient.aliment.nom }}</a>
               </li>
+    
              {% endfor %}
-  
+  </br><button><a href="ingredients/create" > Afegir ingredient </a></button> 
       
 
 {% endblock %}
