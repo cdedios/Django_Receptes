@@ -13,6 +13,11 @@ from django.views.generic import DetailView, UpdateView
 from forms import *
 from django.utils.decorators import method_decorator
 
+from rest_framework import generics
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
+from serializers import RecepptaSerializer, PasSerializer, IngredientSerializer, CategoriaSerializer, AlimentSerializer, MetodeSerializer
 
 class LoginRequiredMixin(object):
 
@@ -49,7 +54,7 @@ def receptes_list(request):
 
 def recepta_desc(request, id):
   try:
-    recepta = Recepta.objects.get(pk=id)
+    recepta = Recepta.objects.get(idRecepta=id)
     passos = Pas.objects.filter(recepta=recepta).order_by('order')
     ingredients = Ingredient.objects.filter(recepta=recepta)
     context = RequestContext(request)
@@ -86,7 +91,7 @@ def ingredients_list(request):
 
 def ingredient_desc(request, id):
   try:
-    ingredient = Ingredient.objects.get(pk=id)
+    ingredient = Ingredient.objects.get(idIngredient=id)
     context = RequestContext(request)
     param = {
         'titlehead' : "Detalls recepta",
@@ -108,7 +113,7 @@ def aliments_list(request):
 
 def aliment_desc(request, id):
   try:
-    aliment = Aliment.objects.get(pk=id)
+    aliment = Aliment.objects.get(idAliment=id)
     ingredients = Ingredient.objects.filter(aliment=aliment)
     context = RequestContext(request)
     param = {
@@ -132,7 +137,7 @@ def categories_list(request):
 
 def categoria_desc(request, id):
   try:
-    categoria = Categoria.objects.get(pk=id)
+    categoria = Categoria.objects.get(idCategoria=id)
     receptes = Recepta.objects.filter(category=categoria)
     context = RequestContext(request)
     param = {
@@ -165,7 +170,7 @@ def passos_list(request):
 
 def pas_desc(request, id):
   try:
-    pas = Pas.objects.get(pk=id)
+    pas = Pas.objects.get(idPas=id)
     ingredients = Ingredient.objects.filter(pas=pas)
     context = RequestContext(request)
     param = {
@@ -189,7 +194,7 @@ def metodes_list(request):
 
 def metode_desc(request, id):
   try:
-    metode = MetodePreparacio.objects.get(pk=id)
+    metode = MetodePreparacio.objects.get(idMetode=id)
     ingredients = Ingredient.objects.filter(prep_method = metode)
     context = RequestContext(request)
     param = {

@@ -21,50 +21,55 @@ urlpatterns = patterns('',
     url(r'^login/$','django.contrib.auth.views.login'),
     url(r'^admin/', include(admin.site.urls)),
 
-#RECEPTES:
-    # ex: /receptes/
-    url(r'^receptes/$', receptes_list),
-    
-    # ex: /receptes/1/
-    url(r'^receptes/(?P<id>\w+)/$', recepta_desc),
-#    url(r'^receptes/create/$', ReceptaCreate.as_view(), name='recepta_create'),
-    
-#INGREDIENTS
-    # ex: /ingredients/
-    url(r'^ingredients/$', ingredients_list),
-    # ex: /ingredients/1/
-    url(r'^ingredients/(?P<id>\w+)/$', ingredient_desc),
-    # ex: /receptes/1/ingredients/1
-    url(r'^receptes/(?P<pkr>\d+)/ingredients/(?P<pk>\d+)/$',
-        DetailView.as_view(
-            model=Ingredient,
-            template_name='ingredient.html'),
-        name='ingredient_detail'),
-##AQUI MADAFAKAAAAAA
-# EL QUERYSET NO ES .ALL ES FILTER PERO NO SE COM ES PASSA EL PARAMETRE PK 
 
-    # ex: /receptes/1/ingredients/
-    url(r'^receptes/(?P<pk>\d+)/ingredients/$',
-        ListView.as_view(
-            queryset=Ingredient.objects.all,
-            context_object_name='Ingredients',
-            template_name='ingredients.html'),
-        name='ingredients_list'),
+#CREACIO
 
-    # ex: /receptes/1/ingredients/1/edit/
-    url(r'^receptes/(?P<pkr>\d+)/ingredients/(?P<pk>\d+)/edit/$',
-        IngredientUpdate.as_view(),
-        name='dish_edit'),
-
+    # ex: /ingredients/create/
+    url(r'^ingredients/create/$', IngredientCreate.as_view(), name='ingredient_create'),  
     # ex: /receptes/1/ingredients/create
     url(r'^receptes/(?P<pk>\d+)/ingredients/create/$',
         IngredientCreate.as_view(),
         name='ingredient_create'),
+    # ex: /passos/create/
+    url(r'^passos/create/$', PasCreate.as_view(), name='pas_create'),  
+    # ex: /receptes/1/passos/create
+    url(r'^receptes/(?P<pk>\d+)/passos/create/$',
+        PassosCreate.as_view(),
+        name='pas_create'),
+
+
+
+
+    # ex: /receptes/1/ingredients/1
+    #url(r'^receptes/(?P<pkr>\d+)/ingredients/(?P<pk>\d+)/$',
+    #    DetailView.as_view(
+    #        model=Ingredient,
+    #        template_name='ingredient.html'),
+    #    name='ingredient_detail'),
+
+##AQUI MADAFAKAAAAAA
+# EL QUERYSET NO ES .ALL ES FILTER PERO NO SE COM ES PASSA EL PARAMETRE PK 
+
+    # ex: /receptes/1/ingredients/
+    #url(r'^receptes/(?P<pk>\d+)/ingredients/$',
+    #    ListView.as_view(
+    #        queryset=Ingredient.objects.all,
+    #        context_object_name='Ingredients',
+    #        template_name='ingredients.html'),
+    #    name='ingredients_list'),
+ 
+    # ex: /receptes/1/ingredients/1/edit/
+    url(r'^receptes/(?P<pkr>\d+)/ingredients/(?P<pk>\d+)/edit/$',
+        IngredientUpdate.as_view(),
+        name='dish_edit'),
+    # ex: /ingredients/1/edit/
+    url(r'^/ingredients/(?P<pk>\d+)/edit/$',
+        IngredientUpdate.as_view(),
+        name='dish_edit'),
 
     #ALIMENTS
-    url(r'^aliments/$', aliments_list),
-    url(r'^aliments/(?P<id>\w+)/$', aliment_desc),
-    url(r'^aliments/(?P<id>\w+)/$', aliment_desc),
+    #url(r'^aliments/$', aliments_list),
+    #url(r'^aliments/(?P<id>\w+)/$', aliment_desc),
 
     #CATEGORIES
     url(r'^categories/$', categories_list),
@@ -84,6 +89,9 @@ urlpatterns = patterns('',
     url(r'^metodes/$', metodes_list),
     url(r'^metodes/(?P<id>\w+)/$', metode_desc),
 )
+
+
+
 #RESTful API
 urlpatterns += patterns('',
     url(r'^api/receptes/$', APIReceptaList.as_view(), name='receptes-list'),

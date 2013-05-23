@@ -51,12 +51,13 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = os.path.join(os.path.abspath(os.path.dirname(__file__)), "../media")
+MEDIA_ROOT = ''
+#os.path.join(os.path.abspath(os.path.dirname(__file__)), "../media")
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '/media/'
+MEDIA_URL = ''#'/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -69,7 +70,9 @@ STATIC_ROOT = ''
 STATIC_URL = '/static/'
 
 # Additional locations of static files
-STATICFILES_DIRS = ('/home/calos/Dropbox/SISTEMES I TECNOLOGIES WEB/practica/Django_Receptes/Receptes/static',
+STATICFILES_DIRS = (
+  '/home/calos/Dropbox/SISTEMES I TECNOLOGIES WEB/practica/Django_Receptes/Receptes/static/',
+  '/home/calos/Dropbox/SISTEMES I TECNOLOGIES WEB/practica/Django_Receptes/Receptes/iReceptes/templates/',
 
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
@@ -128,7 +131,7 @@ INSTALLED_APPS = (
      'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    #'rest_framework',
+    'rest_framework',
 
 )
 
