@@ -6,7 +6,7 @@
   
     <ul>     
       {% for ingredient in Ingredients %}
-        <li><a href="/ingredients/{{ ingredient.id }}">{{ ingredient.quantitat }}{{ ingredient.unitat }}{{ ingredient.aliment.nom }}</a> 
+        <li><a href="/ingredients/{{ ingredient.idIngredient }}">{{ ingredient.quantitat }}{{ ingredient.unitat }}{{ ingredient.aliment.nom }}</a> 
         </li>
       {% endfor %}
     </ul>

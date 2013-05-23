@@ -128,9 +128,8 @@ INSTALLED_APPS = (
      'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'iReceptes',
     #'rest_framework',
-    'south',
+
 )
 
 # A sample logging configuration. The only tangible logging
@@ -162,13 +161,13 @@ LOGGING = {
     }
 }
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
-    'PAGINATE_BY': 10,
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.BrowsableAPIRenderer',
-        'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.XMLRenderer',
-    )
+#REST_FRAMEWORK = {
+#    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
+#    'PAGINATE_BY': 10,
+#    'DEFAULT_RENDERER_CLASSES': (
+#        'rest_framework.renderers.BrowsableAPIRenderer',
+#        'rest_framework.renderers.JSONRenderer',
+#        'rest_framework.renderers.XMLRenderer',
+#    )
 
-}
+#}

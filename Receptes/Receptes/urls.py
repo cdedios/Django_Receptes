@@ -19,10 +19,12 @@ urlpatterns = patterns('',
     url(r'^$', mainpage, name='home'),
     url(r'^logout/$', 'django.contrib.auth.views.logout',{ 'next_page' : '/'}),
     url(r'^login/$','django.contrib.auth.views.login'),
+    url(r'^admin/', include(admin.site.urls)),
 
-#RECEPTES
+#RECEPTES:
     # ex: /receptes/
     url(r'^receptes/$', receptes_list),
+    
     # ex: /receptes/1/
     url(r'^receptes/(?P<id>\w+)/$', recepta_desc),
 #    url(r'^receptes/create/$', ReceptaCreate.as_view(), name='recepta_create'),
@@ -81,11 +83,25 @@ urlpatterns = patterns('',
     #METODES PREPARACIO
     url(r'^metodes/$', metodes_list),
     url(r'^metodes/(?P<id>\w+)/$', metode_desc),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-     url(r'^admin/', include(admin.site.urls)),
-    
 )
+#RESTful API
+urlpatterns += patterns('',
+    url(r'^api/receptes/$', APIReceptaList.as_view(), name='receptes-list'),
+    url(r'^api/receptes/(?P<pk>\d+)/$', APIReceptaDetail.as_view(), name='recepta-detail'),
+
+    url(r'^api/passos/$', APIPasList.as_view(), name='passos-list'),
+    url(r'^api/passos/(?P<pk>\d+)/$', APIPasDetail.as_view(), name='pas-detail'),
+
+    url(r'^api/ingredients/$', APIIngredientList.as_view(), name='ingredients-list'),
+    url(r'^api/ingredients/(?P<pk>\d+)/$', APIIngredientDetail.as_view(), name='ingredient-detail'),
+
+    url(r'^api/aliments/$', APIAlimentList.as_view(), name='aliments-list'),
+    url(r'^api/aliments/(?P<pk>\d+)/$', APIAlimentDetail.as_view(), name='aliment-detail'),
+
+    url(r'^api/categories/$', APICategoriaList.as_view(), name='categories-list'),
+    url(r'^api/categories/(?P<pk>\d+)/$', APICategoriaDetail.as_view(), name='categoria-detail'),
+
+    url(r'^api/metodes/$', APIMetodeList.as_view(), name='metodes-list'),
+    url(r'^api/metodes/(?P<pk>\d+)/$', APIMetodeDetail.as_view(), name='metode-detail'),
+)    
+

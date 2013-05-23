@@ -218,3 +218,36 @@ class IngredientUpdate(LoginRequiredMixin, CheckIsOwnerMixin, UpdateView):
     template_name = 'form.html'
     form_class = IngredientForm
 
+#API RestFul
+class APIReceptaList(generics.ListCreateAPIView):
+	model = Recepta
+	serializer_class = GratacelSerializer
+
+class APIGratacelDetail(generics.RetrieveUpdateDestroyAPIView):
+	model = Gratacel
+	serializer_class = GratacelSerializer
+
+class APIEstilList(generics.ListCreateAPIView):
+	model = Estil
+	serializer_class = EstilSerializer
+
+class APIEstilDetail(generics.RetrieveUpdateDestroyAPIView):
+	model = Estil
+	serializer_class = EstilSerializer
+
+class APIMaterialList(generics.ListCreateAPIView):
+	model = Material
+	serializer_class = MaterialSerializer
+
+class APIMaterialDetail(generics.RetrieveUpdateDestroyAPIView):
+	model = Material
+	serializer_class = MaterialSerializer
+
+class APIArquitecteList(generics.ListCreateAPIView):
+	model = Arquitecte
+	serializer_class = ArquitecteSerializer
+
+class APIArquitecteDetail(generics.RetrieveUpdateDestroyAPIView):
+	model = Arquitecte
+	serializer_class = ArquitecteSerializer
+

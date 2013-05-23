@@ -5,7 +5,7 @@
   <h1> {{ titlehead }} </h1>
     <ul>     
       {% for recepta in Receptas %}
-        <li><a href="/receptes/{{ recepta.id }}">{{ recepta.nom }}</a>  Descripcio: {{ recepta.description }}
+        <li><a href="/receptes/{{ recepta.idRecepta }}">{{ recepta.nom }}</a>  Descripcio: {{ recepta.description }}
         </li>
       {% endfor %}
     </ul>
