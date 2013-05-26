@@ -3,11 +3,13 @@
 {% block content %}
         
         <ul>
-          <h2>Receptes de la categoria {{categoria_nom}}</h2>         
+          <h2>Receptes de la categoria {{categoria_nom}}</h2>  
+
              {% for recepta in Receptes %}
               <li>
-                  <a href="/receptes/{{ recepta.idRecepta }}">{{ recepta.nom }}</a>
+                  <a href="/receptes/{{ recepta.id }}">{{ recepta.nom }}</a>
               </li>
              {% endfor %} 
+
         </ul>
 {% endblock %}

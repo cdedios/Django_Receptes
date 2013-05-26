@@ -9,15 +9,15 @@ from django.core import urlresolvers
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView
-from django.views.generic import DetailView, UpdateView
+from django.views.generic import DetailView, UpdateView, DeleteView
 from forms import *
 from django.utils.decorators import method_decorator
 
-from rest_framework import generics
+from rest_framework import generics, permissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
-from serializers import RecepptaSerializer, PasSerializer, IngredientSerializer, CategoriaSerializer, AlimentSerializer, MetodeSerializer
+from serializers import ReceptaSerializer, PasSerializer, IngredientSerializer, CategoriaSerializer, AlimentSerializer, MetodeSerializer
 
 class LoginRequiredMixin(object):
 
@@ -54,7 +54,7 @@ def receptes_list(request):
 
 def recepta_desc(request, id):
   try:
-    recepta = Recepta.objects.get(idRecepta=id)
+    recepta = Recepta.objects.get(pk=id)
     passos = Pas.objects.filter(recepta=recepta).order_by('order')
     ingredients = Ingredient.objects.filter(recepta=recepta)
     context = RequestContext(request)
@@ -63,6 +63,7 @@ def recepta_desc(request, id):
 			  'nom_recepta' : recepta.nom ,
         'descripcio_recepta' : recepta.description,
         'categoria_recepta' : recepta.category,
+        'pais' : recepta.pais,
         'Passos' : passos ,
 			  'Ingredients' : ingredients ,
         }
@@ -70,14 +71,7 @@ def recepta_desc(request, id):
     raise Http404
   return render_to_response('recepta.html',param,context)
 
-class ReceptaCreate(CreateView):
-	model = Recepta
-	template_name = 'form.html'
-	form_class = ReceptaForm
 
-	def	form_valid(self, form):
-		form.instance.user = self.request.user
-		return super(ReceptaCreate, self).form_valid(form)
 
 #INGREDIENTS
 def ingredients_list(request):
@@ -91,7 +85,7 @@ def ingredients_list(request):
 
 def ingredient_desc(request, id):
   try:
-    ingredient = Ingredient.objects.get(idIngredient=id)
+    ingredient = Ingredient.objects.get(pk=id)
     context = RequestContext(request)
     param = {
         'titlehead' : "Detalls recepta",
@@ -113,12 +107,12 @@ def aliments_list(request):
 
 def aliment_desc(request, id):
   try:
-    aliment = Aliment.objects.get(idAliment=id)
+    aliment = Aliment.objects.get(pk=id)
     ingredients = Ingredient.objects.filter(aliment=aliment)
     context = RequestContext(request)
     param = {
         'titlehead' : "Detalls recepta",
-			  'aliment_nom' : aliment.nom ,
+			  'aliment_nom' : aliment.nom_aliment ,
         'Ingredients' : ingredients,
         }
   except Recepta.DoesNotExist:
@@ -137,7 +131,7 @@ def categories_list(request):
 
 def categoria_desc(request, id):
   try:
-    categoria = Categoria.objects.get(idCategoria=id)
+    categoria = Categoria.objects.get(pk=id)
     receptes = Recepta.objects.filter(category=categoria)
     context = RequestContext(request)
     param = {
@@ -170,7 +164,7 @@ def passos_list(request):
 
 def pas_desc(request, id):
   try:
-    pas = Pas.objects.get(idPas=id)
+    pas = Pas.objects.get(pk=id)
     ingredients = Ingredient.objects.filter(pas=pas)
     context = RequestContext(request)
     param = {
@@ -194,7 +188,7 @@ def metodes_list(request):
 
 def metode_desc(request, id):
   try:
-    metode = MetodePreparacio.objects.get(idMetode=id)
+    metode = MetodePreparacio.objects.get(pk=id)
     ingredients = Ingredient.objects.filter(prep_method = metode)
     context = RequestContext(request)
     param = {
@@ -215,44 +209,153 @@ class IngredientCreate(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        form.instance.ingredient = Ingredient.objects.get(id=self.kwargs['pk'])
         return super(IngredientCreate, self).form_valid(form)
+
+class PasCreate(LoginRequiredMixin, CreateView):
+    model = Pas
+    template_name = 'form.html'
+    form_class = PasForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(PasCreate, self).form_valid(form)
+
+class AlimentCreate(LoginRequiredMixin, CreateView):
+    model = Aliment
+    template_name = 'form.html'
+    form_class = AlimentForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+
+        return super(AlimentCreate, self).form_valid(form)
+
+class MetodeCreate(LoginRequiredMixin, CreateView):
+    model = MetodePreparacio
+    template_name = 'form.html'
+    form_class = MetodePreparacioForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(MetodeCreate, self).form_valid(form)
+
+class ReceptaCreate(CreateView):
+	model = Recepta
+	template_name = 'form.html'
+	form_class = ReceptaForm
+
+	def	form_valid(self, form):
+		form.instance.user = self.request.user
+		return super(ReceptaCreate, self).form_valid(form)
+
+class CategoriaCreate(LoginRequiredMixin, CreateView):
+    model = Categoria
+    template_name = 'form.html'
+    form_class = CategoriaForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(CategoriaCreate, self).form_valid(form)
 
 class IngredientUpdate(LoginRequiredMixin, CheckIsOwnerMixin, UpdateView):
     model = Ingredient
     template_name = 'form.html'
     form_class = IngredientForm
 
+class PasUpdate(LoginRequiredMixin, CheckIsOwnerMixin, UpdateView):
+    model = Pas
+    template_name = 'form.html'
+    form_class = PasForm
+
+class CategoriaUpdate(LoginRequiredMixin, CheckIsOwnerMixin, UpdateView):
+    model = Categoria
+    template_name = 'form.html'
+    form_class = CategoriaForm
+
+class ReceptaUpdate(LoginRequiredMixin, CheckIsOwnerMixin, UpdateView):
+    model = Recepta
+    template_name = 'form.html'
+    form_class = ReceptaForm
+
+class AlimentUpdate(LoginRequiredMixin, CheckIsOwnerMixin, UpdateView):
+    model = Aliment
+    template_name = 'form.html'
+    form_class = AlimentForm
+
+class MetodeUpdate(LoginRequiredMixin, CheckIsOwnerMixin, UpdateView):
+    model = MetodePreparacio
+    template_name = 'form.html'
+    form_class = MetodePreparacioForm
+
 #API RestFul
+class IsOwnerOrReadOnly(permissions.BasePermission):
+
+    def has_object_permission(self, request, view, obj):
+        # Read permissions are allowed to any request,
+        # so we'll always allow GET, HEAD or OPTIONS requests.
+        if request.method in permissions.SAFE_METHODS:
+            return True
+
+        # Instance must have an attribute named `owner`.
+        return obj.user == request.user
+
 class APIReceptaList(generics.ListCreateAPIView):
-	model = Recepta
-	serializer_class = GratacelSerializer
+  permission_classes = (IsOwnerOrReadOnly,)
+  model = Recepta
+  serializer_class = ReceptaSerializer
 
-class APIGratacelDetail(generics.RetrieveUpdateDestroyAPIView):
-	model = Gratacel
-	serializer_class = GratacelSerializer
+class APIReceptaDetail(generics.RetrieveUpdateDestroyAPIView):
+  permission_classes = (IsOwnerOrReadOnly,)
+  model = Recepta
+  serializer_class = ReceptaSerializer
 
-class APIEstilList(generics.ListCreateAPIView):
-	model = Estil
-	serializer_class = EstilSerializer
+class APIIngredientList(generics.ListCreateAPIView):
+  permission_classes = (IsOwnerOrReadOnly,)
+  model = Ingredient
+  serializer_class = IngredientSerializer
 
-class APIEstilDetail(generics.RetrieveUpdateDestroyAPIView):
-	model = Estil
-	serializer_class = EstilSerializer
+class APIIngredientDetail(generics.RetrieveUpdateDestroyAPIView):
+  permission_classes = (IsOwnerOrReadOnly,)
+  model = Ingredient
+  serializer_class = IngredientSerializer
 
-class APIMaterialList(generics.ListCreateAPIView):
-	model = Material
-	serializer_class = MaterialSerializer
+class APIPasList(generics.ListCreateAPIView):
+  permission_classes = (IsOwnerOrReadOnly,)
+  model = Pas
+  serializer_class = PasSerializer
 
-class APIMaterialDetail(generics.RetrieveUpdateDestroyAPIView):
-	model = Material
-	serializer_class = MaterialSerializer
+class APIPasDetail(generics.RetrieveUpdateDestroyAPIView):
+  permission_classes = (IsOwnerOrReadOnly,)
+  model = Pas
+  serializer_class = PasSerializer
 
-class APIArquitecteList(generics.ListCreateAPIView):
-	model = Arquitecte
-	serializer_class = ArquitecteSerializer
+class APICategoriaList(generics.ListCreateAPIView):
+  permission_classes = (IsOwnerOrReadOnly,)
+  model = Categoria
+  serializer_class = CategoriaSerializer
 
-class APIArquitecteDetail(generics.RetrieveUpdateDestroyAPIView):
-	model = Arquitecte
-	serializer_class = ArquitecteSerializer
+class APICategoriaDetail(generics.RetrieveUpdateDestroyAPIView):
+  permission_classes = (IsOwnerOrReadOnly,)
+  model = Categoria
+  serializer_class = CategoriaSerializer
+
+class APIAlimentList(generics.ListCreateAPIView):
+  permission_classes = (IsOwnerOrReadOnly,)
+  model = Aliment
+  serializer_class = AlimentSerializer
+
+class APIAlimentDetail(generics.RetrieveUpdateDestroyAPIView):
+  permission_classes = (IsOwnerOrReadOnly,)
+  model = Aliment
+  serializer_class = AlimentSerializer
+
+class APIMetodeList(generics.ListCreateAPIView):
+  permission_classes = (IsOwnerOrReadOnly,)
+  model = MetodePreparacio #CUIDADO AQUI
+  serializer_class = MetodeSerializer
+
+class APIMetodeDetail(generics.RetrieveUpdateDestroyAPIView):
+  permission_classes = (IsOwnerOrReadOnly,)
+  model = MetodePreparacio #CUIDADO AQUI
+  serializer_class = MetodeSerializer
 

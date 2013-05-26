@@ -4,22 +4,21 @@
 
   <h1>{{nom_recepta}} </h1>         
       <p>{{descripcio_recepta}}</p>
-      <p>Categoria: <a href="/passos/{{ pas.idPas }}">{{categoria_recepta}}</a></b>    
-
+      <p>Categoria: <a href="/passos/{{ pas.id }}">{{categoria_recepta}}</a></b>    
+      <p>Pais de la recepta: {{pais}}</p>
   <h1>Passos: </h1>         
              {% for pas in Passos %} <!-- llista ja ordenada  --> 
               <ol>
-                  <a href="/passos/{{ pas.idPas }}">{{ pas.text }}</a>
+                  <a href="/passos/{{ pas.id }}">{{ pas.text }}</a>
               </ol>
              {% endfor %}
   <h1>Ingredients: </h1>          
              {% for ingredient in Ingredients %} 
               <li>
-                  <a href="/ingredients/{{ ingredient.idIngredient }}">{{ ingredient.quantitat }}{{ ingredient.unitat }}{{ ingredient.aliment.nom }}</a>
+                  <a href="/ingredients/{{ ingredient.id }}">{{ ingredient.quantitat }}{{ ingredient.unitat }}{{ ingredient.aliment.nom }}</a>
               </li>
     
              {% endfor %}
-  </br><button><a href="ingredients/create" > Afegir ingredient </a></button> 
       
 
 {% endblock %}

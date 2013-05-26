@@ -2,10 +2,10 @@
 
 {% block content %}
 
-<h3>Descripcio Ingredient: </h3>         
-      <p>{{ingredient.quantitat}} {{ingredient.unitat}} de <a href="/ingredients/{{ ingredient.idIngredient }}">{{ingredient.aliment}}</a></p>
-      <p>S'usa  a la recepta <a href="/receptes/{{ ingredient.recepta.idRecepta }}">{{ingredient.recepta.nom}}</a></p>
-      <p>En el pas: <a href="/ingredients/{{ ingredient.idIngredient }}">{{ingredient.pas.text}}</a></p>
-      <p>amb el metode: <a href="/metodes/{{ ingredient.prep_method.idMetode }}">{{ingredient.prep_method.nom}}</a></p>     
+<h3>Descripcio Ingredient: </h3>        
+      <p>{{ingredient.quantitat}} {{ingredient.unitat}} de <a href="/ingredients/{{ ingredient.id }}">{{ingredient.aliment}}</a></p>
+      <p>S'usa  a la recepta <a href="/receptes/{{ ingredient.recepta.id }}">{{ingredient.recepta.nom}}</a></p>
+      <p>En el pas: <a href="/ingredients/{{ ingredient.id }}">{{ingredient.pas.text}}</a></p>
+      <p>amb el metode: <a href="/metodes/{{ ingredient.prep_method.id }}">{{ingredient.prep_method.nom}}</a></p>     
 
 {% endblock %}

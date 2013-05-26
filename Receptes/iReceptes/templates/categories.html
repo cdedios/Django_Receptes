@@ -4,10 +4,17 @@
 
 <h1>Llista de {{ titlehead }} </h1>
     <ul>     
+
       {% for categoria in Categories %}
-        <li><a href="/categories/{{ categoria.idCategoria }}">{{ categoria.nom}}</a> 
-        </li>
+        <li><a href="/categories/{{ categoria.id }}">{{ categoria.nom}}</a>  
+		{% if user.username %}
+			<button><a href="{{categoria.id}}/edit" > Editar Categoria </a></button> 
+			<button><a href="{{categoria.id}}/delete" > Eliminar Categoria </a></button> 
+	   	{% endif %}
+	</li>
       {% endfor %}
     </ul>
-
+	{% if user.username %}
+	  </br><button><a href="create" > Afegir categoria </a></button> 
+	{% endif %}
 {% endblock %}

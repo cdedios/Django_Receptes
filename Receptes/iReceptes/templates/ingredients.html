@@ -6,9 +6,15 @@
   
     <ul>     
       {% for ingredient in Ingredients %}
-        <li><a href="/ingredients/{{ ingredient.idIngredient }}">{{ ingredient.quantitat }}{{ ingredient.unitat }}{{ ingredient.aliment.nom }}</a> 
-        </li>
+        <li><a href="/ingredients/{{ ingredient.id }}">{{ ingredient.quantitat }}{{ ingredient.unitat }}{{ ingredient.aliment.nom_aliment }}</a> 
+	{% if user.username %}
+		<button><a href="{{ingredient.id}}/edit" > Editar ingredient </a></button> 
+		<button><a href="{{ingredient.id}}/delete" > Eliminar ingredient </a></button> 
+   	{% endif %}        
+	</li>
       {% endfor %}
-    </ul>
-  </br><button><a href="create" > Afegir ingredient </a></button> 
+    </ul>	
+	{% if user.username %}
+	  </br><button><a href="create" > Afegir ingredient </a></button> 
+   	{% endif %}  
 {% endblock %}

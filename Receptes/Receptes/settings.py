@@ -73,6 +73,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
   '/home/calos/Dropbox/SISTEMES I TECNOLOGIES WEB/practica/Django_Receptes/Receptes/static/',
   '/home/calos/Dropbox/SISTEMES I TECNOLOGIES WEB/practica/Django_Receptes/Receptes/iReceptes/templates/',
+	'/home/c/cdf1/Django_Receptes/Receptes/static',
+
 
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
@@ -164,13 +166,13 @@ LOGGING = {
     }
 }
 
-#REST_FRAMEWORK = {
-#    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
-#    'PAGINATE_BY': 10,
-#    'DEFAULT_RENDERER_CLASSES': (
-#        'rest_framework.renderers.BrowsableAPIRenderer',
-#        'rest_framework.renderers.JSONRenderer',
-#        'rest_framework.renderers.XMLRenderer',
-#    )
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
+    'PAGINATE_BY': 10,
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.XMLRenderer',
+    )
 
-#}
+}

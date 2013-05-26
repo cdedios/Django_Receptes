@@ -9,7 +9,7 @@
           <h1>Llista de ingredients els quals fan servir el pas: </h1>         
              {% for ingredient in Ingredients %} 
               <li>
-                  <a href="/ingredients/{{ingredient.idIngredient}}">{{ingredient.quantitat}} {{ingredient.unitat}} de {{ingredient.aliment}}</a>
+                  <a href="/ingredients/{{ingredient.id }}">{{ingredient.quantitat}} {{ingredient.unitat}} de {{ingredient.aliment}}</a>
               </li>
              {% endfor %}
                 

@@ -5,9 +5,15 @@
   <h1> {{ titlehead }} </h1>
     <ul>     
       {% for recepta in Receptas %}
-        <li><a href="/receptes/{{ recepta.idRecepta }}">{{ recepta.nom }}</a>  Descripcio: {{ recepta.description }}
+        <li><a href="/receptes/{{ recepta.id }}">{{ recepta.nom }}</a>  Descripcio: {{ recepta.description }}
+	{% if user.username %}
+		<button><a href="{{recepta.id}}/edit" > Editar Recepta </a></button> 
+		<button><a href="{{recepta.id}}/delete" > Eliminar Recepta </a></button> 
+   	{% endif %} 
         </li>
       {% endfor %}
     </ul>
-
+	{% if user.username %}
+ 		 </br><button><a href="create" > Afegir recetpa </a></button> 
+	{% endif %}
 {% endblock %}

@@ -5,8 +5,17 @@
     <h1> {{ titlehead }} </h1>
     <ul>     
       {% for aliment in Aliments %}
-        <li><a href="/aliments/{{ aliment.idAliment }}">{{ aliment.nom }}</a> Grup alimentari: {{aliment.group}} 
+        <li><a href="/aliments/{{ aliment.id }}">{{ aliment.nom_aliment }}</a> Grup alimentari: {{aliment.group}} 
+			{% if user.username %}
+				<button><a href="{{aliment.id}}/edit" > Editar aliment </a></button> 
+				<button><a href="{{aliment.id}}/delete" > Eliminar aliment </a></button> 
+   		{% endif %}
         </li>
       {% endfor %}
     </ul>
+
+		{% if user.username %}
+			</br><button><a href="create" > Afegir aliment </a></button> 
+    {% endif %}
+  
 {% endblock %}

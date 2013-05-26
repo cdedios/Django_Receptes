@@ -5,9 +5,15 @@
 <h1>Llista de {{ titlehead }} </h1>
     <ul>     
       {% for metode in Metodes %}
-        <li><a href="/metodes/{{ metode.idMetode }}">{{ metode.nom }}</a> 
+        <li><a href="/metodes/{{ metode.id }}">{{ metode.nom }}</a> 
+	{% if user.username %}
+		<button><a href="{{metode.id}}/edit" > Editar Metode </a></button> 
+		<button><a href="{{metode.id}}/delete" > Eliminar Metode </a></button> 
+   	{% endif %} 
         </li>
       {% endfor %}
     </ul>
-
+	{% if user.username %}
+  		</br><button><a href="create" > Afegir metode </a></button> 
+	{% endif %}
 {% endblock %}

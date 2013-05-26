@@ -5,9 +5,15 @@
 <h1>Llista de {{ titlehead }} </h1>
     <ul>     
       {% for pas in Passos %}
-        <li><a href="/passos/{{ pas.idPas }}">{{ pas.text }}</a> 
+        <li><a href="/passos/{{ pas.id }}">{{ pas.text }}</a> 
+	{% if user.username %}
+		<button><a href="{{pas.id}}/edit" > Editar Pas </a></button> 
+		<button><a href="{{pas.id}}/delete" > Eliminar Pas </a></button> 
+   	{% endif %} 
         </li>
       {% endfor %}
     </ul>
-
+	{% if user.username %}
+  		</br><button><a href="create" > Afegir pas </a></button> 
+	{% endif %}
 {% endblock %}
