@@ -1,21 +1,21 @@
 {% extends "index.html" %}
 
 {% block content %}
-
-  <h1>{{nom_recepta}} </h1>         
-      <p>{{descripcio_recepta}}</p>
-      <p>Categoria: <a href="/passos/{{ pas.id }}">{{categoria_recepta}}</a></b>    
-      <p>Pais de la recepta: {{pais}}</p>
+<span vocab="http://schema.org/" typeof="Recipe">
+  <h1><span property="name">{{nom_recepta}}</span></h1>         
+      <p><span property="description">{{descripcio_recepta}}</span></p>
+      <p>Categoria: <a href="/passos/{{ pas.id }}"><span property="recipeCategory">{{categoria_recepta}}</span></a></b>    
+      <p>Pais de la recepta: <span property="recipeCuisine">{{pais}}</span></p>
   <h1>Passos: </h1>         
              {% for pas in Passos %} <!-- llista ja ordenada  --> 
               <ol>
-                  <a href="/passos/{{ pas.id }}">{{ pas.text }}</a>
+                  <a href="/passos/{{ pas.id }}"><span property="recipeInstructions">{{ pas.text }}</span></a>
               </ol>
              {% endfor %}
   <h1>Ingredients: </h1>          
              {% for ingredient in Ingredients %} 
               <li>
-                  <a href="/ingredients/{{ ingredient.id }}">{{ ingredient.quantitat }}{{ ingredient.unitat }}{{ ingredient.aliment.nom }}</a>
+                  <a href="/ingredients/{{ ingredient.id }}">{{ ingredient.quantitat }}{{ ingredient.unitat }}<span property="ingredients">{{ ingredient.aliment.nom }}</span></a>
               </li>
     
              {% endfor %}

@@ -92,3 +92,17 @@ class Ingredient(models.Model):
   def get_absolute_url(self):
       return reverse('ingredient_detail',kwargs={'id':self.id})
 
+### REVIEW
+class Review(models.Model):
+    RATING_CHOICES = ((1,'1'),(2,'2'),(3,'3'),(4,'4'),(5,'5'))
+    rating = models.PositiveSmallIntegerField('Ratings (stars)', blank=False, default=3, choices=RATING_CHOICES)
+    comment = models.TextField(blank=True, null=True)
+    user = models.ForeignKey(User, default=User.objects.get(id=1))
+    date = models.DateField(default=date.today)
+
+    #class Meta:
+    #    abstract = True
+
+class ReceptaReview(Review):
+    recepta = models.ForeignKey(Recepta)
+

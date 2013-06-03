@@ -4,15 +4,14 @@ from rest_framework.serializers import HyperlinkedModelSerializer
 from models import *
 
 class ReceptaSerializer(HyperlinkedModelSerializer):
-	#url = HyperlinkedIdentityField(view_name='recepta-detail')
 	user = CharField(read_only=True)
+  receptareview_set = HyperlinkedRelatedField(many=True, read_only=True, view_name='receptareview-detail')
 
 	class Meta:
 		model = Recepta
-		fields = ('nom', 'description', 'category', 'pais', 'user', 'date')
+		fields = ('nom', 'description', 'category', 'pais', 'user', 'date','receptareview_set')
 
 class PasSerializer(HyperlinkedModelSerializer):
-#	url = HyperlinkedIdentityField(view_name='pas-detail')
 	user = CharField(read_only=True)
 
 	class Meta:
@@ -20,7 +19,6 @@ class PasSerializer(HyperlinkedModelSerializer):
 		fields = ('text', 'recepta', 'order', 'user', 'date')
 
 class CategoriaSerializer(HyperlinkedModelSerializer):
-#	url = HyperlinkedIdentityField(view_name='estil-detail')
 	user = CharField(read_only=True)
 
 	class Meta:
@@ -28,7 +26,6 @@ class CategoriaSerializer(HyperlinkedModelSerializer):
 		fields = ('nom', 'dataInici', 'dataFi', 'user', 'date')
 
 class IngredientSerializer(HyperlinkedModelSerializer):
-#	url = HyperlinkedIdentityField(view_name='estil-detail')
 	user = CharField(read_only=True)
 
 	class Meta:
@@ -36,7 +33,6 @@ class IngredientSerializer(HyperlinkedModelSerializer):
 		fields = ('nom', 'dataInici', 'dataFi', 'user', 'date')
 
 class AlimentSerializer(HyperlinkedModelSerializer):
-#	url = HyperlinkedIdentityField(view_name='estil-detail')
   	user = CharField(read_only=True)
 
 	class Meta:
@@ -44,7 +40,6 @@ class AlimentSerializer(HyperlinkedModelSerializer):
 		fields = ('nom_aliment', 'group', 'ingredients', 'user', 'date')
 
 class MetodeSerializer(HyperlinkedModelSerializer):
-#	url = HyperlinkedIdentityField(view_name='estil-detail')
 	user = CharField(read_only=True)
 
 	class Meta:
