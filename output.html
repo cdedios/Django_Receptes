@@ -1,6 +1,6 @@
 
 
-<head>  	
+<head>		
 	<title>Receptes Detalls recepta</title>
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 	<script	src="http://code.jquery.com/jquery-1.9.1.js"></script>
@@ -43,9 +43,22 @@
       <p>Pais de la recepta: <span property="recipeCuisine">España</span></p>
   
   <h1>Passos: </h1>         
+              <!-- llista ja ordenada  --> 
+              <ol>
+                  <a href="/passos/1"><span property="recipeInstructions">fer el alsdkfasdf</span></a>
+              </ol>
+              <!-- llista ja ordenada  --> 
+              <ol>
+                  <a href="/passos/2"><span property="recipeInstructions">asdfadsfasdf</span></a>
+              </ol>
              
              
   <h1>Ingredients: </h1>          
+              
+              <li>
+                  <a href="/ingredients/1">1.0litro<span property="ingredients"></span></a>
+              </li>
+    
              
       
 	<h1>Reviews</h1>
@@ -93,6 +106,32 @@
 </span>
     
 
+    <h1>Add Review</h1>
+    <form action="../1/reviews/create/" method="post"> 
+        <div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='EGPs5BITclPvCA4tLALwmouEDc0yRHKG' /></div>
+        Message: <textarea name="comment" id="comment" rows="4"></textarea>
+        <p>Rating:</p>
+        <p>
+            
+                <input type="radio" name="rating" id="rating1" value="1" />
+                <label for="choice1">1 star</label><br/>
+            
+                <input type="radio" name="rating" id="rating2" value="2" />
+                <label for="choice2">2 stars</label><br/>
+            
+                <input type="radio" name="rating" id="rating3" value="3" />
+                <label for="choice3">3 stars</label><br/>
+            
+                <input type="radio" name="rating" id="rating4" value="4" />
+                <label for="choice4">4 stars</label><br/>
+            
+                <input type="radio" name="rating" id="rating5" value="5" />
+                <label for="choice5">5 stars</label><br/>
+            
+        </p>
+        <input type="submit" value="Review" />
+    </form>
+
 
 				</div>
 			</div>
@@ -104,8 +143,9 @@
 				<li>
 					<h2>LOGIN</h2>
 					
-            <p> Welcome Guest! if you want you can <a href="/login">Login</a></p>
-                 
+            <p> Welcome carlos <p>
+            <p> <a href="/logout">Logout</a></p>
+               
             
 				</li>
 
