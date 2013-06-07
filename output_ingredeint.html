@@ -3,307 +3,50 @@ html>
 <html
 lang="en">
 <head>
-<link
-rel="stylesheet"
-href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-­‐ui.css"
-/>
-<script
-src="http://code.jquery.com/jquery-­‐1.9.1.js"></script>
-<script
-src="http://code.jquery.com/ui/1.10.3/jquery-­‐ui.js"></script>
-<link
-rel="stylesheet"
-href="/static/style/base.css"
-/>
-<title>MyRestaurants
--­‐
-La
-Taberna
-de
-la
-Cuarta
-Esquina</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-­‐ui.css" />
+  <script src="http://code.jquery.com/jquery-­‐1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-­‐ui.js"></script>
+  <link rel="stylesheet" href="/static/style/base.css"/>
+  <title>MyRestaurants -­‐ La Taberna delaCuarta Esquina</title>
 </head>
 <body>
-<div
-id="header">
-<p>User
-roberto
-(<a
-href="/accounts/logout/?next=/myrestaurants/">logout</a>)</p>
-</div>
-<div
-id="sidebar">
-<ul>
-<li><a
-href="/myrestaurants/">Home</a></li>
-</ul>
-</div>
-<div
-id="content">
-<span
-vocab="http://schema.org/"
-typeof="Restaurant">
-<h1>
-<span
-property="name">La
-Taberna
-de
-la
-Cuarta
-Esquina</span>
-(<a
-href="/myrestaurants/restaurants/1/edit/">edit</a>)
-</h1>
-<h2>Address:</h2>
-<p>
-LasCuatro
-Esquinas,
-16
-<br/>
-Calahorra
-<br/>
-La
-Rioja
-(Spain)
-</p>
-<h2>
-Dishes
-(<a
-href="/myrestaurants/restaurants/1/dishes/create/">add</a>)
-</h2>
-<ul>
-<li><a
-href="/myrestaurants/restaurants/1/dishes/1/">Parrillada
-de
-verduras</a></li>
-<li><a
-href="/myrestaurants/restaurants/1/dishes/3/">Risotto
-con
-bacalao
-y
-borraja</a></li>
-<li><a
-href="/myrestaurants/restaurants/1/dishes/4/">Chuletón</a></li>
-</ul>
-<h2>Reviews</h2>
-<span
-rel="aggregateRating">
-<p
-typeof="AggregateRating">
-Average
-rating
-<span
-property="ratingValue">4.7</span>
-from
-<span
-property="reviewCount">3</span>
-reviews
-</p>
-</span>
-<ul
-rel="review">
-<li
-typeof="Review">
-<p
-rel="reviewRating"
-typeof="Rating">
-<span
-property="worstRating"
-content="1"></span>
-<span
-property="ratingValue">5</span>
-stars
-<span
-property="bestRating"
-content="5"></span>
-Some
-rights
-reserved
-©
-2013,
-Roberto
-García
-This
-work
-is
-licensed
-under
-a
-Creative
-Commons
-Attribution-­‐ShareAlike
-3.0
-Unported
-License
-</p>
-<p
-property="description">Excelente
-restaurante
-y
-excepcional
-parrillada
-de
-verduras</p>
-<p>Created
-by
-<span
-property="author">roberto</span>
-on
-<span
-property="publishDate">April
-2,
-2013</span></p>
-</li>
-<li
-typeof="Review">
-<p
-rel="reviewRating"
-typeof="Rating">
-<span
-property="worstRating"
-content="1"></span>
-<span
-property="ratingValue">5</span>
-stars
-<span
-property="bestRating"
-content="5"></span>
-</p>
-<p
-property="description">Totalmente
-de
-acuerdo,
-hay
-que
-ir</p>
-<p>Created
-by
-<span
-property="author">usuario</span>
-on
-<span
-property="publishDate">May
-24,
-2013</span></p>
-</li>
-<li
-typeof="Review">
-<p
-rel="reviewRating"
-typeof="Rating">
-<span
-property="worstRating"
-content="1"></span>
-<span
-property="ratingValue">4</span>
-stars
-<span
-property="bestRating"
-content="5"></span>
-</p>
-<p
-property="description">Esta
-vez
-no
-me
-ha
-convencido
-tanto</p>
-<p>Created
-by
-<span
-property="author">roberto</span>
-on
-<span
-property="publishDate">May
-24,
-2013</span></p>
-</li>
-</ul>
-</span>
-<h3>Add
-Review</h3>
-<form
-action="/myrestaurants/restaurants/1/reviews/create/"
-method="post">
-<input
-type='hidden'
-name='csrfmiddlewaretoken'
-value='Tv06LVn4oRZceUIGVpkN7RfBwhdxKyYb'
-/>
-Message:
-<textarea
-name="comment"
-id="comment"
-rows="4"></textarea>
-<p>Rating:</p>
-<p>
-<input
-type="radio"
-name="rating"
-id="rating1"
-value="1"
-/>
-<label
-for="choice1">1
-star</label><br
-/>
-<input
-type="radio"
-name="rating"
-id="rating2"
-value="2"
-/>
-<label
-for="choice2">2
-stars</label><br
-/>
-<input
-type="radio"
-name="rating"
-id="rating3"
-value="3"
-/>
-<label
-for="choice3">3
-stars</label><br
-/>
-<input
-type="radio"
-name="rating"
-id="rating4"
-value="4"
-/>
-<label
-for="choice4">4
-stars</label><br
-/>
-<input
-type="radio"
-name="rating"
-id="rating5"
-value="5"
-/>
-<label
-for="choice5">5
-stars</label><br
-/></p>
-<input
-type="submit"
-value="Review"
-/>
-</form>
-</div>
-<div
-id="footer">
-Created
-by
-roberto
-on
-March
-24,
-2013
-</div>
+  <div  id="header">
+    <p>User   roberto  (<a  href="/accounts/logout/?next=/myrestaurants/">logout</a>)</p>
+  </div>
+  <div   id="sidebar">
+    <ul>
+      <li><a href="/myrestaurants/">Home</a></li> 
+    </ul>
+  </div>
+  <div   id="content">
+  <span   vocab="http://schema.org/"   typeof="Restaurant">
+  <h1>  
+    <span   property="name">La  Taberna  de  la  Cuarta  Esquina</span>  (<a  href="/myrestaurants/restaurants/1/edit/">edit</a>)
+  </h1>
+  <h2>Address:</h2>
+  <p>  
+    LasCuatro  Esquinas,  16  <br/>     Calahorra <br/>    La  Rioja  (Spain)
+  </p>
+  <h2>  Dishes  (<a  href="/myrestaurants/restaurants/1/dishes/create/">add</a>)</h2>
+  <ul>
+    <li><a  href="/myrestaurants/restaurants/1/dishes/1/">Parrillada  de  verduras</a></li>
+    <li><a  href="/myrestaurants/restaurants/1/dishes/3/">Risotto  con  bacalao  y  borraja</a></li>
+    <li><a  href="/myrestaurants/restaurants/1/dishes/4/">Chuletón</a></li>      
+  </ul>  <h2>Reviews</h2>
+  <span  rel="aggregateRating">
+    <p  typeof="AggregateRating">
+      Average  rating  <span  property="ratingValue">4.7</span>  from
+        <span  property="reviewCount">3</span>  reviews
+    </p>
+  </span>
+  <ul  rel="review">  <li  typeof="Review">
+  <p  rel="reviewRating"  typeof="Rating">
+  <span  property="worstRating"  content="1"></span>
+  <span  property="ratingValue">5</span>stars
+  <span  property="bestRating"  content="5"></span>
+  Some  rights  reserved  ©  2013,  Roberto  García  This  work  is  licensed  under  a Creative  Commons  Attribution-­‐ShareAlike  3.0  Unported  License  </p> 
+  <p  property="description">Excelente  restaurante  y  excepcional  parrillada  de  verduras</p>
+  <p>Created  by  <span  property="author">roberto</span>  on  <span  property="publishDate">April  2,  2013</span></p>
+  </li>
 </body>
 </html>
