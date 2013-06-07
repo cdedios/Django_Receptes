@@ -66,6 +66,8 @@ def recepta_desc(request, id):
         'pais' : recepta.pais,
         'Passos' : passos ,
 			  'Ingredients' : ingredients ,
+        'RATING_CHOICES' : ReceptaReview.RATING_CHOICES,
+        'recepta': recepta,
         }
   except Recepta.DoesNotExist:
     raise Http404
@@ -298,6 +300,15 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 
         # Instance must have an attribute named `owner`.
         return obj.user == request.user
+
+def review(request, pk):
+	recepta = get_object_or_404(Recepta, pk=pk)
+	review = ReceptaReview(rating=request.POST['rating'],
+		comment=request.POST['comment'],
+		user=request.user,
+		recepta=recepta)
+	review.save()
+	return HttpResponseRedirect(urlresolvers.reverse('recepta_detail', args=(recepta.id,)))
 
 class APIReceptaList(generics.ListCreateAPIView):
   permission_classes = (IsOwnerOrReadOnly,)

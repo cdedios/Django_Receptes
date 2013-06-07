@@ -1,11 +1,20 @@
 {% extends "index.html" %}
 
 {% block content %}
+<span vocab="http://schema.org/" typeof="NutritionInformation">
 
 <h3>Descripcio Ingredient: </h3>        
-      <p>{{ingredient.quantitat}} {{ingredient.unitat}} de <a href="/ingredients/{{ ingredient.id }}">{{ingredient.aliment}}</a></p>
+      <p>{{ingredient.quantitat}}  {{ingredient.unitat}} de <a href="/ingredients/{{ ingredient.id }}"><span property="name">{{ingredient.aliment}}</span></a></p>
       <p>S'usa  a la recepta <a href="/receptes/{{ ingredient.recepta.id }}">{{ingredient.recepta.nom}}</a></p>
-      <p>En el pas: <a href="/ingredients/{{ ingredient.id }}">{{ingredient.pas.text}}</a></p>
-      <p>amb el metode: <a href="/metodes/{{ ingredient.prep_method.id }}">{{ingredient.prep_method.nom}}</a></p>     
+      <span rel="recepta">
+         <p typeof="Recipe">
+         	<p>En el pas: <a href="/ingredients/{{ ingredient.id }}"><span property="recipeInstructions">{{ingredient.pas.text}}</span></a></p>
+     			<p>amb el metode: <a href="/metodes/{{ ingredient.prep_method.id }}"><span property="cookingMethod">{{ingredient.prep_method.nom}}</span></a></p>
+     		</p>    
+      </span> 
+      <p>Calories: <span property="calories">{{ ingredient.calories }}</span></p>
+      <p>Carboidrats: <span property="arbohydrateContent">{{ingredient.carbohydrateContent}}</span></p>
+
+</span>
 
 {% endblock %}

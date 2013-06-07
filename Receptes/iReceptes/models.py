@@ -54,6 +54,14 @@ class Recepta(models.Model):
   def __unicode__(self):
     return self.nom
 
+  def averageRating(self):
+      totalSum = 0
+      totalReviews = 0
+      for review in self.receptareview_set.all():
+          totalSum += review.rating
+          totalReviews += 1
+      return totalSum/totalReviews
+
     def get_absolute_url(self):
       return reverse('recepta_detail',kwargs={'id':self.pk})
 
@@ -82,6 +90,8 @@ class Ingredient(models.Model):
   aliment = models.ForeignKey(Aliment,blank=True, null=True)
   prep_method = models.ForeignKey(MetodePreparacio, null=True,blank=True)
   pas = models.ForeignKey(Pas, blank=True, null=True)
+  calories = models.FloatField()
+  carbohydrateContent = models.FloatField()
   user = models.ForeignKey(User)
   date = models.DateField(default=date.today)
 
@@ -97,11 +107,8 @@ class Review(models.Model):
     RATING_CHOICES = ((1,'1'),(2,'2'),(3,'3'),(4,'4'),(5,'5'))
     rating = models.PositiveSmallIntegerField('Ratings (stars)', blank=False, default=3, choices=RATING_CHOICES)
     comment = models.TextField(blank=True, null=True)
-    user = models.ForeignKey(User, default=User.objects.get(id=1))
+    user = models.ForeignKey(User,blank=False)
     date = models.DateField(default=date.today)
-
-    #class Meta:
-    #    abstract = True
 
 class ReceptaReview(Review):
     recepta = models.ForeignKey(Recepta)

@@ -55,7 +55,8 @@ urlpatterns = patterns('',
     url(r'^aliments/create/$', AlimentCreate.as_view(), name='aliment_create'),
     # ex: /metodes/create/
     url(r'^metodes/create/$', MetodeCreate.as_view(), name='metode_create'),  
-
+   # ex: /receptes/1/reviews/create/
+    url(r'^receptes/(?P<pk>\d+)/reviews/create/$', review, name='review_create'),
 
     # ex: /receptes/1/ingredients/create
     url(r'^receptes/(?P<pk>\d+)/ingredients/create/$',

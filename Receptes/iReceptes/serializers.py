@@ -30,7 +30,7 @@ class IngredientSerializer(HyperlinkedModelSerializer):
 
 	class Meta:
 		model = Ingredient
-		fields = ('nom', 'dataInici', 'dataFi', 'user', 'date')
+		fields = ('nom', 'dataInici', 'dataFi','calories','carbohydrateContent', 'user', 'date')
 
 class AlimentSerializer(HyperlinkedModelSerializer):
   	user = CharField(read_only=True)

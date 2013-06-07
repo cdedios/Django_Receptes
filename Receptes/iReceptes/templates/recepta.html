@@ -1,24 +1,73 @@
 {% extends "index.html" %}
 
 {% block content %}
+
 <span vocab="http://schema.org/" typeof="Recipe">
-  <h1><span property="name">{{nom_recepta}}</span></h1>         
+	
+	<h1><span property="name">{{nom_recepta}}</span></h1>         
       <p><span property="description">{{descripcio_recepta}}</span></p>
-      <p>Categoria: <a href="/passos/{{ pas.id }}"><span property="recipeCategory">{{categoria_recepta}}</span></a></b>    
+      <p>Categoria: <span property="recipeCategory" content="{{categoria_recepta}}"><a href="/categoria/{{ categoria_recepta.id }}">{{categoria_recepta}}</a></span></b>    
       <p>Pais de la recepta: <span property="recipeCuisine">{{pais}}</span></p>
-  <h1>Passos: </h1>         
-             {% for pas in Passos %} <!-- llista ja ordenada  --> 
+
+  <h1>Passos: </h1>  <!-- llista ja ordenada  -->         
+             {% for pas in Passos %}
               <ol>
-                  <a href="/passos/{{ pas.id }}"><span property="recipeInstructions">{{ pas.text }}</span></a>
+                  <span property="recipeInstructions"content="{{pas.text}}"><a href="/passos/{{ pas.id }}">{{ pas.text }}</a></span>
               </ol>
              {% endfor %}
+             
   <h1>Ingredients: </h1>          
              {% for ingredient in Ingredients %} 
               <li>
-                  <a href="/ingredients/{{ ingredient.id }}">{{ ingredient.quantitat }}{{ ingredient.unitat }}<span property="ingredients">{{ ingredient.aliment.nom }}</span></a>
+                  <a href="/ingredients/{{ ingredient.id }}">{{ ingredient.quantitat }}{{ ingredient.unitat }}</a>
+                  <span property="ingredients">{{ ingredient.aliment.nom }}</span>
               </li>
-    
              {% endfor %}
       
+	<h1>Reviews</h1>
+      {% if recepta.receptareview_set.all|length > 0 %}
+        <span rel="aggregateRating"> 
+        		<p typeof="AggregateRating">
+                Puntuacio mitja es:          
+                <span property="ratingValue">{{ recepta.averageRating|stringformat:".1f" }}</span>
+                {% with recepta.receptareview_set.all|length as reviewCount %}
+                    sobre <span property="reviewCount">{{ reviewCount}}</span>  opinions
+                {% endwith %}
+            </p>
+        </span>
 
+    <ul rel="review">
+        {% for review in recepta.receptareview_set.all %}
+        <li typeof="Review">
+            <p rel="reviewRating" typeof="Rating">
+                <span property="worstRating" content="{{ RATING_CHOICES.0.0 }}"></span>
+                <span property="ratingValue">{{ review.rating}}</span>
+                star{{ review.rating|pluralize }}
+                {% with RATING_CHOICES|last as best %}
+                <span property="bestRating" content="{{ best.0 }}"></span>
+                {% endwith %}
+            </p>
+            <p property="description">{{ review.comment }}</p>
+            <p>Created by <span property="author">{{ review.user }}</span> on <span property="publishDate">{{ review.date}}</span></p>
+        </li>
+        {% endfor %}
+    </ul>
+</span>
+
+    {% endif %}
+{% if user.username %}
+    <h1>Add Review</h1>
+    <form action="../{{recepta.id}}/reviews/create/" method="post"> 
+        {% csrf_token %}
+        Message: <textarea name="comment" id="comment" rows="4"></textarea>
+        <p>Rating:</p>
+        <p>
+            {% for rate in RATING_CHOICES %}
+                <input type="radio" name="rating" id="rating{{ forloop.counter }}" value="{{ rate.1 }}" />
+                <label for="choice{{ forloop.counter }}">{{ rate.1 }} star{{ rate.0|pluralize }}</label><br/>
+            {% endfor %}
+        </p>
+        <input type="submit" value="Review" />
+    </form>
+{% endif %}
 {% endblock %}
