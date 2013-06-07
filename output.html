@@ -1,6 +1,5 @@
 
 
-
 <head>		
 	<title>Receptes Detalls recepta</title>
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
@@ -68,9 +67,9 @@
         <span rel="aggregateRating"> 
         		<p typeof="AggregateRating">
                 Puntuacio mitja         
-                <span property="ratingValue"></span>
+                <span property="ratingValue">2.0</span>
                 
-                    de <span roperty="reviewCount">2</span>  opinions
+                    de <span roperty="reviewCount">3</span>  opinions
                 
             </p>
         </span>
@@ -103,6 +102,19 @@
             <p>Created by <span property="author">carlos</span> on <span property="publishDate">June 6, 2013</span></p>
         </li>
         
+        <li typeof="Review">
+            <p rel="reviewRating" typeof="Rating">
+                <span property="worstRating" content="1"></span>
+                <span property="ratingValue">1</span>
+                star
+                
+                <span property="bestRating" content="5"></span>
+                
+            </p>
+            <p property="description">molt malament</p>
+            <p>Created by <span property="author">carlos</span> on <span property="publishDate">June 7, 2013</span></p>
+        </li>
+        
     </ul>
 </span>
 
@@ -110,7 +122,7 @@
 
     <h1>Add Review</h1>
     <form action="../1/reviews/create/" method="post"> 
-        <div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='EGPs5BITclPvCA4tLALwmouEDc0yRHKG' /></div>
+        <div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='BphgZE3SyI06IqXxJXsvhSqUAa6eUwO1' /></div>
         Message: <textarea name="comment" id="comment" rows="4"></textarea>
         <p>Rating:</p>
         <p>
