@@ -1,81 +1,52 @@
-
-
-<head>  	
-	<title>Receptes Detalls recepta</title>
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-	<script	src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script	src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-	<link href="/static/css/style.css"rel="stylesheet" type="text/css" media="screen" />
+<!DOCTYPE
+html>
+<html
+lang="en">
+<head>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-­‐ui.css" />
+  <script src="http://code.jquery.com/jquery-­‐1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-­‐ui.js"></script>
+  <link rel="stylesheet" href="/static/style/base.css"/>
+  <title>MyRestaurants -­‐ La Taberna delaCuarta Esquina</title>
 </head>
 <body>
-<div id="wrapper">
-	<div id="header-wrapper">
-		<div id="header" class="container">
-			<div id="logo">
-				<h1><a href="/">receptes </a></h1>
-			</div>
-			<div id="menu">
-				<ul>
-					<li><a href="/receptes">Receptes</a></li>
-					<li><a href="/ingredients">Ingredients</a></li>
-					<li><a href="/passos">Passos</a></li>
-					<li><a href="/aliments">Aliments</a></li>
-					<li><a href="/metodes">Metodes</a></li>
-					<li><a href="/categories">Categories</a></li>
-				</ul>
-			</div>
-		</div>
-		<div id="banner">
-			<div class="content"><img src="/static/images/img02.jpg" width="1000" height="300" alt="" /></div>
-		</div>
-	</div>
-	<!-- end #header -->
-	
-	<div id="page">
-		<div id="content">
-			<div class="post">
-				<div class="entry">
-              
-<span vocab="http://schema.org/" typeof="NutritionInformation">
-
-<h3>Descripcio Ingredient: </h3>        
-      <p>1.0  litro de <a href="/ingredients/1"><span property="name">pa</span></a></p>
-      <p>S'usa  a la recepta <a href="/receptes/1">joma a la parrilla</a></p>
-      <span rel="recepta">
-         <p typeof="Recipe">
-         	<p>En el pas: <a href="/ingredients/1"><span property="recipeInstructions">fer el alsdkfasdf</span></a></p>
-     			<p>amb el metode: <a href="/metodes/1"><span property="cookingMethod">fregir</span></a></p>
-     		</p>    
-      </span> 
-      <p>Calories: <span property="calories">12313.0</span></p>
-      <p>Carboidrats: <span property="arbohydrateContent">1230.0</span></p>
-
-</span>
-
-
-				</div>
-			</div>
-      
-		</div>
-		<!-- end #content -->
-		<div id="sidebar">
-			<ul>
-				<li>
-					<h2>LOGIN</h2>
-					
-            <p> Welcome carlos <p>
-            <p> <a href="/logout">Logout</a></p>
-               
-            
-				</li>
-
-			
-			</ul>
-		</div>
-		<!-- end #sidebar -->
-	</div>
-	<!-- end #page --> 
-</div>
-
+  <div  id="header">
+    <p>User   roberto  (<a  href="/accounts/logout/?next=/myrestaurants/">logout</a>)</p>
+  </div>
+  <div   id="sidebar">
+    <ul>
+      <li><a href="/myrestaurants/">Home</a></li> 
+    </ul>
+  </div>
+  <div   id="content">
+  <span   vocab="http://schema.org/"   typeof="Restaurant">
+  <h1>  
+    <span   property="name">La  Taberna  de  la  Cuarta  Esquina</span>  (<a  href="/myrestaurants/restaurants/1/edit/">edit</a>)
+  </h1>
+  <h2>Address:</h2>
+  <p>  
+    LasCuatro  Esquinas,  16  <br/>     Calahorra <br/>    La  Rioja  (Spain)
+  </p>
+  <h2>  Dishes  (<a  href="/myrestaurants/restaurants/1/dishes/create/">add</a>)</h2>
+  <ul>
+    <li><a  href="/myrestaurants/restaurants/1/dishes/1/">Parrillada  de  verduras</a></li>
+    <li><a  href="/myrestaurants/restaurants/1/dishes/3/">Risotto  con  bacalao  y  borraja</a></li>
+    <li><a  href="/myrestaurants/restaurants/1/dishes/4/">Chuletón</a></li>      
+  </ul>  <h2>Reviews</h2>
+  <span  rel="aggregateRating">
+    <p  typeof="AggregateRating">
+      Average  rating  <span  property="ratingValue">4.7</span>  from
+        <span  property="reviewCount">3</span>  reviews
+    </p>
+  </span>
+  <ul  rel="review">  <li  typeof="Review">
+  <p  rel="reviewRating"  typeof="Rating">
+  <span  property="worstRating"  content="1"></span>
+  <span  property="ratingValue">5</span>stars
+  <span  property="bestRating"  content="5"></span>
+  Some  rights  reserved  ©  2013,  Roberto  García  This  work  is  licensed  under  a Creative  Commons  Attribution-­‐ShareAlike  3.0  Unported  License  </p> 
+  <p  property="description">Excelente  restaurante  y  excepcional  parrillada  de  verduras</p>
+  <p>Created  by  <span  property="author">roberto</span>  on  <span  property="publishDate">April  2,  2013</span></p>
+  </li>
 </body>
 </html>
