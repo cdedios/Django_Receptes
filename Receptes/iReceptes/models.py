@@ -61,8 +61,8 @@ class Recepta(models.Model):
           totalSum += review.rating
           totalReviews += 1
       return totalSum/totalReviews
-
-    def get_absolute_url(self):
+  
+  def get_absolute_url(self):
       return reverse('recepta_detail',kwargs={'id':self.pk})
 
 ### PAS

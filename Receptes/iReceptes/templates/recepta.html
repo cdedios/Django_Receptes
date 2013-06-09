@@ -19,8 +19,8 @@
   <h1>Ingredients: </h1>          
              {% for ingredient in Ingredients %} 
               <li>
-                  <a href="/ingredients/{{ ingredient.id }}">{{ ingredient.quantitat }}{{ ingredient.unitat }}</a>
-                  <span property="ingredients">{{ ingredient.aliment.nom }}</span>
+                  <a href="/ingredients/{{ ingredient.id }}">{{ ingredient.quantitat }} {{ ingredient.unitat }} </a> de 
+                  <span property="ingredients">{{ ingredient.aliment.nom_aliment }}</span>
               </li>
              {% endfor %}
       

@@ -4,12 +4,11 @@ from rest_framework.serializers import HyperlinkedModelSerializer
 from models import *
 
 class ReceptaSerializer(HyperlinkedModelSerializer):
-	user = CharField(read_only=True)
+  user = CharField(read_only=True)
   receptareview_set = HyperlinkedRelatedField(many=True, read_only=True, view_name='receptareview-detail')
-
-	class Meta:
-		model = Recepta
-		fields = ('nom', 'description', 'category', 'pais', 'user', 'date','receptareview_set')
+  class Meta:
+    model = Recepta
+    fields = ('nom', 'description', 'category', 'pais', 'user', 'date','receptareview_set')
 
 class PasSerializer(HyperlinkedModelSerializer):
 	user = CharField(read_only=True)
